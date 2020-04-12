@@ -17,9 +17,70 @@ class DosensController extends Controller
         //
         // $dosen = Dosens::all();
         $dosen = Dosens::paginate(10);
+        $matkul = Dosens::select('dosen_mata_kuliah')->groupBy('dosen_mata_kuliah')->get();
         // $dosen = Dosens::where()->paginate(10);
 
 
+        return View('dosen.index', compact('dosen', 'matkul'));
+    }
+
+    public function search(Request $req)
+    {
+        //
+        $keyword = $req->cari;
+        // dd($keyword);
+        $dosen = Dosens::where('dosen_nama', 'like', '%'.$keyword.'%')
+                ->OrWhere('dosen_nip', 'like', '%'.$keyword.'%')
+                ->OrWhere('dosen_mata_kuliah', 'like', '%'.$keyword.'%')
+                ->OrWhere('dosen_no_telpon', 'like', '%'.$keyword.'%')
+                ->OrWhere('dosen_alamat', 'like', '%'.$keyword.'%')
+                ->paginate(10);
+        return View('dosen.index', compact('dosen'));
+    }
+    public function carinama(Request $req)
+    {
+        //
+        $keyword = $req->nama;
+        // dd($keyword);
+        $dosen = Dosens::where('dosen_nama', 'like', '%'.$keyword.'%')
+                ->paginate(10);
+        return View('dosen.index', compact('dosen'));
+    }
+    public function carinip(Request $req)
+    {
+        //
+        $keyword = $req->nip;
+        // dd($keyword);
+        $dosen = Dosens::where('dosen_nip', 'like', '%'.$keyword.'%')
+                ->paginate(10);
+        return View('dosen.index', compact('dosen'));
+    }
+    public function carimatakuliah(Request $req)
+    {
+        //
+        $keyword = $req->matkul;
+        // dd($keyword);
+        $dosen = Dosens::where('dosen_mata_kuliah', 'like', '%'.$keyword.'%')
+                ->paginate(10);
+        $matkul = Dosens::select('dosen_mata_kuliah')->groupBy('dosen_mata_kuliah')->get();
+        return View('dosen.index', compact('dosen', 'matkul'));
+    }
+    public function carinotelpon(Request $req)
+    {
+        //
+        $keyword = $req->telp;
+        // dd($keyword);
+        $dosen = Dosens::where('dosen_no_telpon', 'like', '%'.$keyword.'%')
+                ->paginate(10);
+        return View('dosen.index', compact('dosen'));
+    }
+    public function carialamat(Request $req)
+    {
+        //
+        $keyword = $req->alamat;
+        // dd($keyword);
+        $dosen = Dosens::where('dosen_alamat', 'like', '%'.$keyword.'%')
+                ->paginate(10);
         return View('dosen.index', compact('dosen'));
     }
 

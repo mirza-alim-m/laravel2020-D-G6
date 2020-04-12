@@ -15,4 +15,6 @@ use Illuminate\Support\Facades\Route;
 //route CRUD
 
 Route::resource('/dosens', 'DosensController');
+Route::get('/caridosen', 'DosensController@search')->name('caridosen');
+Route::get('/caridosen-matkul', 'DosensController@carimatakuliah')->name('caridosen-matkul');
 // Route::post('/dosens/tambah', 'DosensController@store');

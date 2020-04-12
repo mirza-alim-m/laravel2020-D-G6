@@ -15,6 +15,23 @@
 	<div class="alert alert-info">{{session('info')}}</div>
 	@endif
 
+	<div class="row ml-3">
+	<form action="{{route('caridosen')}}" method="get" class="m-2 row">
+	<input type="text" class="form-control mr-2 col-6" name="cari"> 
+	<button class="btn btn-primary">Cari</button>
+	</form>
+	<form action="{{route('caridosen-matkul')}}" method="get" class="m-2 row">
+	<select name="matkul" class="form-control mr-2 col-8">
+	<option value="" selected>Mata Kuliah</option>
+	@foreach($matkul as $d)
+	<option value="{{$d->dosen_mata_kuliah}}">{{$d->dosen_mata_kuliah}}</option>
+	@endforeach
+	</select>
+	<button class="btn btn-primary">Cari</button>
+	</form>
+	</div>
+	
+
 	<table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr class ="bg-primary">
