@@ -12,5 +12,6 @@ class DosensSeeder extends Seeder
     public function run()
     {
         //
+        // factory(App\User::class, 100)->make();
     }
 }
