@@ -1,42 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CRUD DOSEN</title>
+	<title>@yield('title')</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	
-	<h1>Daftar Data Dosen</h1>
 
-	 <a href="/dosen/tambah"> + Tambah Dosen Baru</a>
-	
-	<br/>
-	<br/>
 
-	<table class="table table-bordered table-striped table-hover">
-	<thead>
-		<tr class ="bg-primary">
-			<th>Nama</th>
-			<th>Mata Kuliah</th>
-			<th>No Telpon</th>
-			<th>Alamat</th>
-			<th>Opsi</th>
-		</tr>
-		@foreach($dosen as $d)
-		<tr>
-			<td>{{ $d->dosen_nama }}</td>
-			<td>{{ $d->dosen_mata_kuliah }}</td>
-			<td>{{ $d->dosen_no_telpon }}</td>
-			<td>{{ $d->dosen_alamat }}</td>
-			<td>
-				<a href="/dosen/edit/{{ $d->dosen_nip }}">Edit</a>
-				|
-				<a onclick="return alert('apakah anda yakin?')" href="/dosen/hapus/{{ $d->dosen_nip }}">Hapus</a>
-			</td>
-		</tr>
-		@endforeach
-		</thead>
-	</table>
+	@yield('container')
 
 
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

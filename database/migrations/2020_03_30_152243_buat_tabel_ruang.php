@@ -14,9 +14,11 @@ class BuatTabelRuang extends Migration
     public function up()
     {
         Schema::create('ruang', function (Blueprint $table) {
-            $table->increment('id_ruang');
-            $table->integer('id_mk');
+            $table->bigIncrements('id');
+            $table->bigInteger('id_mk')->unsigned()->index();
             $table->timestamps();
+            $table->softDeletesTz();
+            
         });
     }
 
