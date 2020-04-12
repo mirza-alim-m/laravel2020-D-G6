@@ -15,7 +15,10 @@ class DosensController extends Controller
     public function index()
     {
         //
-        $dosen = Dosens::all();
+        // $dosen = Dosens::all();
+        $dosen = Dosens::paginate(10);
+        // $dosen = Dosens::where()->paginate(10);
+
 
         return View('dosen.index', compact('dosen'));
     }

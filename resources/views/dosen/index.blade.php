@@ -44,4 +44,6 @@
 		</thead>
 	</table>
 
+{{$dosen->withQueryString()->links()}}
+
 @endsection
