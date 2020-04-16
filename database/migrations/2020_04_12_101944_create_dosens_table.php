@@ -17,7 +17,7 @@ class CreateDosensTable extends Migration
             $table->bigIncrements('id');
             $table->string('dosen_nip', 11);
             $table->string('dosen_nama', 30);
-            $table->string('dosen_mata_kuliah', 20);
+            $table->bigInteger('mata_kuliah_id')->unsigned()->index();
             $table->string('dosen_no_telpon', 15);
             $table->text('dosen_alamat');
             $table->timestamps();

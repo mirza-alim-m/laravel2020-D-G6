@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Dosens;
+use Datatables;
 
 class DosensController extends Controller
 {
@@ -16,12 +17,41 @@ class DosensController extends Controller
     {
         //
         // $dosen = Dosens::all();
-        $dosen = Dosens::paginate(10);
+        // $dosen = Dosens::paginate(10);
         $matkul = Dosens::select('dosen_mata_kuliah')->groupBy('dosen_mata_kuliah')->get();
         // $dosen = Dosens::where()->paginate(10);
 
 
-        return View('dosen.index', compact('dosen', 'matkul'));
+        return View('dosen.index', compact('matkul'));
+    }
+
+    public function json(Request $r)
+    {
+        // variable dosens menyimpan query untuk select kolom dibawah
+        $query = Dosens::select(['id'
+                                ,'dosen_nip'
+                                ,'dosen_nama'
+                                ,'dosen_mata_kuliah'
+                                ,'dosen_alamat'
+                                ,'dosen_no_telpon']);
+        // jika ada http request yang membawa parameter matkul
+        if(isset($r->matkul)){
+            // Maka buat kondisi query dimana mata kuliah sesuai yang di filter
+            $query->where('dosen_mata_kuliah', 'like', $r->matkul);
+        }
+        // Memuat data sesuai query dan menaruhnya ke class datatables
+        $data = Datatables::of($query);
+        // return respon dari http request
+        return $data
+        // tambahkan kolom untuk button detail dan ubah
+        ->addColumn('action', function($dosens)
+        {
+            return '<a href="'.route('dosens.show', ['dosen' => $dosens->id])
+            .'" class="btn btn-xs btn-primary mr-1">Detail</a>'
+            .'<a href="'.route('dosens.edit',['dosen' => $dosens->id ])
+            .'" class="btn btn-xs btn-success mr-1">Ubah</a>'
+            ;
+        })->make(true);
     }
 
     public function search(Request $req)
