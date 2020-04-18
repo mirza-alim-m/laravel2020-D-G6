@@ -11,7 +11,7 @@ class Dosens extends Model
     protected $fillable = [
         'dosen_nip'
         , 'dosen_nama'
-        , 'dosen_mata_kuliah'
+        , 'mata_kuliah_id'
         , 'dosen_no_telpon'
         , 'dosen_alamat'
     ];

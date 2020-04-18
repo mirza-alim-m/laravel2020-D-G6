@@ -14,8 +14,22 @@ use Illuminate\Support\Facades\Route;
 */
 //route CRUD
 
+Route::get('/', function () {
+    return view('auth.login');
+});
+
+Auth::routes();
+
 Route::resource('/dosens', 'DosensController');
+Route::resource("ruang", "RuangController");
 Route::get('dosensdata', 'DosensController@json')->name('datatables.dosens');
 Route::get('/caridosen', 'DosensController@search')->name('caridosen');
 Route::get('/caridosen-matkul', 'DosensController@carimatakuliah')->name('caridosen-matkul');
+
+Route::match(["GET", "POST"], "/register", function(){
+    return redirect("/login");
+    })->name("register");
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 // Route::post('/dosens/tambah', 'DosensController@store');

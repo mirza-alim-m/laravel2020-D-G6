@@ -8,10 +8,10 @@ class Mk extends Model
 {
     //tabel mata kuliah
     protected $table = 'mata_kuliah';
-    protected $fillable = ['mata_kuliah'];
+    protected $fillable = ['kelas', 'gedung'];
 
     //relasi tabel
     public function panggildatadosen(){
-        return $this->hasMany('App\dosen');
+        return $this->hasMany('App\Dosens', 'mata_kuliah_id');
     }
 }
