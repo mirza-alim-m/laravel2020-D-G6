@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class BuatTabelRuang extends Migration
+class CreateRuangTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class BuatTabelRuang extends Migration
      */
     public function up()
     {
-        Schema::create('ruang', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('id_mk')->unsigned()->index();
-            $table->timestamps();
-            $table->softDeletesTz();
-            
-        });
+      Schema::create('ruangs', function (Blueprint $table) {
+          $table->bigIncrements('id');
+          $table->string("kelas", 6);
+          $table->string("gedung", 2);
+          $table->timestamps();
+          $table->softDeletesTz();
+      });
     }
 
     /**

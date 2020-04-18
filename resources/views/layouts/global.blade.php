@@ -50,22 +50,22 @@ bootstrap.min.css')}}">
         <input class="border-dark bg-primary-darkest form-control d-none
 d-md-block w-50 ml-3 mr-2" type="text" placeholder="Search" aria- label="Search">
         <div class="dropdown d-none d-md-block">
-            @if(\Auth::user())
+            {{-- @if(\Auth::user())
             <button class="btn btn-link btn-link-primary dropdown-toggle" id="navbar-dropdown" data-toggle="dropdown">
                 {{Auth::user()->name}}
             </button>
-            @endif
+            @endif --}}
             <div class="dropdown-menu dropdown-menu-right" id="navbar-
 dropdown">
                 <a href="#" class="dropdown-item">Profile</a>
                 <a href="#" class="dropdown-item">Setting</a>
                 <div class="dropdown-divider"></div>
-                <li>
+                <li> {{--
                     <form action="{{route("logout")}}" method="POST">
                         @csrf
                         <button class="dropdown-item" style="cursor:pointer">Sign
                             Out</button>
-                    </form>
+                    </form> --}}
                 </li>
             </div>
         </div>
@@ -93,10 +93,10 @@ mb-4" type="text" placeholder="Search" aria-label="Search" />
                         <li><a href="#"> Profile</a></li>
                         <li><a href="#"> Setting</a></li>
                         <li>
-                            <form action="{{route("logout")}}" method="POST">
+                          {{--  <form action="{{route("logout")}}" method="POST">
                                 @csrf
                                 <button class="dropdown-item" style="cursor:pointer">Sign Out</button>
-                            </form>
+                            </form> --}}
                         </li>
                     </div>
                 </ul>
