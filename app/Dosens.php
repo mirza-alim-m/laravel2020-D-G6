@@ -15,4 +15,9 @@ class Dosens extends Model
         , 'dosen_no_telpon'
         , 'dosen_alamat'
     ];
+
+    public function matkuls()
+    {
+        return $this->belongsTo('App\Mk');
+    }
 }
