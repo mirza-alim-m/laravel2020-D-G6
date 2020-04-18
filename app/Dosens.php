@@ -18,6 +18,6 @@ class Dosens extends Model
 
     public function matkuls()
     {
-        return $this->belongsTo('App\Mk');
+        return $this->belongsTo('App\Mk', 'mata_kuliah_id');
     }
 }

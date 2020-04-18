@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Dosens;
+use App\Mk;
 use Datatables;
 
 class DosensController extends Controller
@@ -18,7 +19,11 @@ class DosensController extends Controller
         //
         // $dosen = Dosens::all();
         // $dosen = Dosens::paginate(10);
-        $matkul = Dosens::select('dosen_mata_kuliah')->groupBy('dosen_mata_kuliah')->get();
+        $matkul = Dosens::with('ruangs')
+        // ->select('mata_kuliah_id')
+        ->get()
+        ->groupBy('dosens.ruangs')
+        ;
         // $dosen = Dosens::where()->paginate(10);
 
 
@@ -28,21 +33,19 @@ class DosensController extends Controller
     public function json(Request $r)
     {
         // variable dosens menyimpan query untuk select kolom dibawah
-        $query = Dosens::select(['id'
-                                ,'dosen_nip'
-                                ,'dosen_nama'
-                                ,'dosen_mata_kuliah'
-                                ,'dosen_alamat'
-                                ,'dosen_no_telpon']);
+        $query = Dosens::with('mata_kuliah');
         // jika ada http request yang membawa parameter matkul
         if(isset($r->matkul)){
             // Maka buat kondisi query dimana mata kuliah sesuai yang di filter
-            $query->where('dosen_mata_kuliah', 'like', $r->matkul);
+            $query->where('mata_kuliah_id', '=', $r->matkul);
         }
         // Memuat data sesuai query dan menaruhnya ke class datatables
         $data = Datatables::of($query);
         // return respon dari http request
         return $data
+        ->addColumn('mata_kuliah', function(){
+
+        })
         // tambahkan kolom untuk button detail dan ubah
         ->addColumn('action', function($dosens)
         {
@@ -137,7 +140,7 @@ class DosensController extends Controller
         // dd($request);
         $request->validate(['dosen_nama' => 'required'
             ,'dosen_nip' => 'required'
-            ,'dosen_mata_kuliah' => 'required'
+            ,'mata_kuliah_id' => 'required'
             ,'dosen_no_telpon' => 'required'
             ,'dosen_alamat' => 'required']);
         Dosens::create($request->all());
@@ -180,13 +183,13 @@ class DosensController extends Controller
         //
         $request->validate(['dosen_nama' => 'required'
             ,'dosen_nip' => 'required'
-            ,'dosen_mata_kuliah' => 'required'
+            ,'mata_kuliah_id' => 'required'
             ,'dosen_no_telpon' => 'required'
             ,'dosen_alamat' => 'required']);
         Dosens::where('id', $dosen->id)->update(
             ['dosen_nama' => $request->dosen_nama
             ,'dosen_nip' => $request->dosen_nip
-            ,'dosen_mata_kuliah' => $request->dosen_mata_kuliah
+            ,'mata_kuliah_id' => $request->mata_kuliah_id
             ,'dosen_no_telpon' => $request->dosen_no_telpon
             ,'dosen_alamat' => $request->dosen_alamat]
         );

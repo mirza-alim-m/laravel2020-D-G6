@@ -22,7 +22,9 @@
 		</div>
 		<div class="row mt-2">
 		<div class="col-2">Mata Kuliah</div>
-		<input value="{{$dosen->dosen_mata_kuliah}}" class="form-control col-6" type="text" name="dosen_mata_kuliah" required="required"> <br/></br>
+		<select name="mata_kuliah_id" >
+		<option value="{{$dosen->mata_kuliah_id}}">{{$dosen->matkuls->mata_kuliah}}</option>
+		</select>
 		</div>
 		<div class="row mt-2">
 		<div class="col-2">No. Telpon</div>
