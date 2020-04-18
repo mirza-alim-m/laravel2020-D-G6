@@ -12,9 +12,4 @@ class Ruang extends Model
         'kelas'
         ,'gedung'
     ];
-
-    public function dosenss()
-    {
-        return $this->hasMany('App\Dosens');
-    }
 }
