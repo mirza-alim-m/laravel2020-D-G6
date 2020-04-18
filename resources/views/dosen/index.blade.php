@@ -20,7 +20,7 @@
 	<select name="matkul" class="form-control mr-2 col-8">
 	<option value="" selected>Mata Kuliah</option>
 	@foreach($matkul as $d)
-	<option value="{{$d->dosen_mata_kuliah}}">{{$d->dosen_mata_kuliah}}</option>
+	<option value="{{$d->mata_kuliah_id}}">{{$d->matkuls->mata_kuliah}}</option>
 	@endforeach
 	</select>
 	</div>
@@ -43,7 +43,7 @@
 		{{-- @foreach($dosen as $d)
 		<tr>
 			<td>{{ $d->dosen_nama }}</td>
-			<td>{{ $d->dosen_mata_kuliah }}</td>
+			<td>{{ $d->matkuls->mata_kuliah }}</td>
 			<td>{{ $d->dosen_no_telpon }}</td>
 			<td>{{ $d->dosen_alamat }}</td>
 			<td>
@@ -74,7 +74,7 @@ $(document).ready(function(){
             { data: 'id', name: 'id' },
             { data: 'dosen_nip', name: 'dosen_nip' },
             { data: 'dosen_nama', name: 'dosen_nama' },
-            { data: 'dosen_mata_kuliah', name: 'dosen_mata_kuliah' },
+            { data: 'mata_kuliah.mata_kuliah', name: 'mata_kuliah.mata_kuliah' },
             { data: 'dosen_no_telpon', name: 'dosen_no_telpon' },
             { data: 'dosen_alamat', name: 'dosen_alamat' },
             { data: 'action', name: 'action' },
