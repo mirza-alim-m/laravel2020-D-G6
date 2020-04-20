@@ -27,19 +27,19 @@ class DosensController extends Controller
     public function json(Request $r)
     {
         // variable dosens menyimpan query untuk select kolom dibawah
-        $query = Dosens::with('mata_kuliah');
+        $query = Dosens::with('matkuls');
         // jika ada http request yang membawa parameter matkul
         if(isset($r->matkul)){
             // Maka buat kondisi query dimana mata kuliah sesuai yang di filter
-            $query->where('mata_kuliah_id', '=', $r->matkul);
+            $query->whereHas('matkuls', function ($query) use ($r)
+            {
+                $query->where('id', '=', $r->matkul);
+            });
         }
         // Memuat data sesuai query dan menaruhnya ke class datatables
         $data = Datatables::of($query);
         // return respon dari http request
         return $data
-        ->addColumn('mata_kuliah', function(){
-
-        })
         // tambahkan kolom untuk button detail dan ubah
         ->addColumn('action', function($dosens)
         {
@@ -47,6 +47,9 @@ class DosensController extends Controller
             .'" class="btn btn-xs btn-primary mr-1">Detail</a>'
             .'<a href="'.route('dosens.edit',['dosen' => $dosens->id ])
             .'" class="btn btn-xs btn-success mr-1">Ubah</a>'
+            .'<form action='. route('dosens.destroy', ['dosen' => $dosens->id])
+            .' method="post"><input type="hidden" value="DELETE" name="_method"><input type="hidden" name="_token" value="' . csrf_token()
+            .'"><button class="btn btn-xs btn-danger" type="submit" onclick="return confirm(\'Data mau dihapus?\')">Hapus</button></form>'
             ;
         })->make(true);
     }
@@ -119,7 +122,8 @@ class DosensController extends Controller
     public function create()
     {
         //
-        return View('dosen.add');
+        $matkul = Mk::all();
+        return View('dosen.add', compact('matkul'));
     }
 
     /**
@@ -162,7 +166,8 @@ class DosensController extends Controller
     public function edit(Dosens $dosen)
     {
         //
-        return View('dosen.edit', compact('dosen'));
+        $matkul = Mk::all();
+        return View('dosen.edit', compact('dosen', 'matkul'));
     }
 
     /**

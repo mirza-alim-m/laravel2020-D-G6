@@ -1,8 +1,13 @@
-@extends('index')
-@section('title', 'Ubah Data')
-@section('container')
+@extends("layouts.global")
+@section("title") Ubah Dosen @endsection
+@section("content")
+@if(session('status'))
+<div class="alert alert-success">
+    {{session('status')}}
+</div>
+@endif
 	
-	<h1>Data Dosen</h1>
+	<h1>Ubah Data Dosen</h1>
 
 	<a href="/dosens"> Kembali</a>
 	
@@ -13,22 +18,24 @@
 		@method('put')
 		@csrf
 		<div class="row mt-2">
-		<div class="col-2">Nama</div>
-		<input value="{{$dosen->dosen_nama}}" class="form-control col-6" type="text" name="dosen_nama" required="required">
+		<div class="col-2">Nama</div><input class="form-control col-6" type="text" name="dosen_nama" required="required" value="{{$dosen->dosen_nama}}">
 		</div>
 		<div class="row mt-2">
 		<div class="col-2">NIPY</div>
-		<input value="{{$dosen->dosen_nip}}" class="form-control col-6" type="text" name="dosen_nip" required="required">
+		<input class="form-control col-6" type="text" name="dosen_nip" required="required" value="{{$dosen->dosen_nip}}">
 		</div>
 		<div class="row mt-2">
 		<div class="col-2">Mata Kuliah</div>
-		<select name="mata_kuliah_id" >
-		<option value="{{$dosen->mata_kuliah_id}}">{{$dosen->matkuls->mata_kuliah}}</option>
+		<select class="form-control col-6" name="mata_kuliah_id" required="required">
+		<option value="">Pilih Mata Kuliah</option>
+		@foreach($matkul as $mk)
+		<option value="{{$mk->id}}" @if($mk->id == $dosen->mata_kuliah_id) selected @endif>{{$mk->mata_kuliah}}</option>
+		@endforeach
 		</select>
 		</div>
 		<div class="row mt-2">
 		<div class="col-2">No. Telpon</div>
-		<input value="{{$dosen->dosen_no_telpon}}" class="form-control col-6" type="number" name="dosen_no_telpon" required="required"> <br/></br>
+		<input class="form-control col-6" type="number" name="dosen_no_telpon" required="required" value="{{$dosen->dosen_no_telpon}}">
 		</div>
 		<div class="row mt-2">
 		<div class="col-2">Alamat</div>
@@ -36,7 +43,7 @@
 		</div>
 		<div class="row mt-2">
 		<div class="col-6"></div>
-		<button type="submit" class="btn btn-primary">Ubah</button>
+		<button type="submit" class="btn btn-primary">Simpan</button>
 		<a class="ml-3 btn btn-primary" href="/dosens"> Kembali</a>
 		</div>
 	</form>

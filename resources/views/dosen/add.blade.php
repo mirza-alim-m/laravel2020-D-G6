@@ -1,6 +1,12 @@
-@extends('index')
-@section('title', 'Tambah Data')
-@section('container')
+@extends("layouts.global")
+@section("title") Tambah Data Dosen @endsection
+@section("content")
+<div class="col-md-8">
+    @if(session('status'))
+<div class="alert alert-success">
+{{session('status')}}
+</div>
+@endif
 	
 	<h1>Data Dosen</h1>
 
@@ -8,7 +14,7 @@
 	<br/>
 	<br/>
 
-	<form action="/dosens" method="post" class="form m-3">
+	<form action="/dosens" method="post" class="bg-white shadow-sm p-3">
 		@csrf
 		<div class="row mt-2">
 		<div class="col-2">Nama</div><input class="form-control col-6" type="text" name="dosen_nama" required="required">
@@ -19,11 +25,16 @@
 		</div>
 		<div class="row mt-2">
 		<div class="col-2">Mata Kuliah</div>
-		<input class="form-control col-6" type="text" name="dosen_mata_kuliah" required="required"> <br/></br>
+		<select class="form-control col-6" name="mata_kuliah_id" required="required">
+		<option value="">Pilih Mata Kuliah</option>
+		@foreach($matkul as $mk)
+		<option value="{{$mk->id}}">{{$mk->mata_kuliah}}</option>
+		@endforeach
+		</select>
 		</div>
 		<div class="row mt-2">
 		<div class="col-2">No. Telpon</div>
-		<input class="form-control col-6" type="number" name="dosen_no_telpon" required="required"> <br/></br>
+		<input class="form-control col-6" type="number" name="dosen_no_telpon" required="required">
 		</div>
 		<div class="row mt-2">
 		<div class="col-2">Alamat</div>
