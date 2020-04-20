@@ -19,13 +19,7 @@ class DosensController extends Controller
         //
         // $dosen = Dosens::all();
         // $dosen = Dosens::paginate(10);
-        $matkul = Dosens::with('ruangs')
-        // ->select('mata_kuliah_id')
-        ->get()
-        ->groupBy('dosens.ruangs')
-        ;
-        // $dosen = Dosens::where()->paginate(10);
-
+        $matkul = Mk::all();
 
         return View('dosen.index', compact('matkul'));
     }
@@ -64,7 +58,7 @@ class DosensController extends Controller
         // dd($keyword);
         $dosen = Dosens::where('dosen_nama', 'like', '%'.$keyword.'%')
                 ->OrWhere('dosen_nip', 'like', '%'.$keyword.'%')
-                ->OrWhere('dosen_mata_kuliah', 'like', '%'.$keyword.'%')
+                ->OrWhere('mata_kuliah_id', 'like', '%'.$keyword.'%')
                 ->OrWhere('dosen_no_telpon', 'like', '%'.$keyword.'%')
                 ->OrWhere('dosen_alamat', 'like', '%'.$keyword.'%')
                 ->paginate(10);
@@ -93,9 +87,9 @@ class DosensController extends Controller
         //
         $keyword = $req->matkul;
         // dd($keyword);
-        $dosen = Dosens::where('dosen_mata_kuliah', 'like', '%'.$keyword.'%')
+        $dosen = Dosens::where('mata_kuliah_id', 'like', '%'.$keyword.'%')
                 ->paginate(10);
-        $matkul = Dosens::select('dosen_mata_kuliah')->groupBy('dosen_mata_kuliah')->get();
+        $matkul = Dosens::select('mata_kuliah_id')->groupBy('mata_kuliah_id')->get();
         return View('dosen.index', compact('dosen', 'matkul'));
     }
     public function carinotelpon(Request $req)

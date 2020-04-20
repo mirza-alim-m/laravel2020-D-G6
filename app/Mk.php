@@ -11,7 +11,7 @@ class Mk extends Model
     protected $fillable = ['kelas', 'gedung'];
 
     //relasi tabel
-    public function panggildatadosen(){
-        return $this->hasMany('App\Dosens', 'mata_kuliah_id');
+    public function dosens(){
+        return $this->hasMany('App\Dosens');
     }
 }

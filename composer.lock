@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e4fe16039a46775392d1aab29d3f76e1",
+    "content-hash": "4b4e28397a79a3c2837f1d6ddc5df386",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -739,12 +739,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "2e4d634b913e8c747721b830f2e7b03e0bf30b3e"
+                "reference": "1f163d471b973b237772bb11cdcb994aadd3d530"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/2e4d634b913e8c747721b830f2e7b03e0bf30b3e",
-                "reference": "2e4d634b913e8c747721b830f2e7b03e0bf30b3e",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1f163d471b973b237772bb11cdcb994aadd3d530",
+                "reference": "1f163d471b973b237772bb11cdcb994aadd3d530",
                 "shasum": ""
             },
             "require": {
@@ -882,7 +882,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-04-18T09:17:22+00:00"
+            "time": "2020-04-19T02:32:48+00:00"
         },
         {
             "name": "laravel/tinker",
