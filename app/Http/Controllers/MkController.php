@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mk;
+use Datatables;
 use Illuminate\Http\Request;
 
 class MkController extends Controller
@@ -15,10 +16,37 @@ class MkController extends Controller
     public function index()
     {
         // mengambil data dari table dosen
-        $mata_kuliah = DB::table('mata_kuliah')->get();
+        $mata_kuliah = Mk::all();
 
         // mengirim data dosen ke view index
-        return view('index',['mata_kuliah' => $mata_kuliah]);
+        return view('mk.index',['matkul' => $mata_kuliah]);
+    }
+
+    public function json(Request $r)
+    {
+        // variable dosens menyimpan query untuk select kolom dibawah
+        $query = Mk::select('id','mata_kuliah');
+        // jika ada http request yang membawa parameter matkul
+        if(isset($r->matkul)){
+            // Maka buat kondisi query dimana mata kuliah sesuai yang di filter
+            $query->where('id', '=', $r->matkul);
+        }
+        // Memuat data sesuai query dan menaruhnya ke class datatables
+        $data = Datatables::of($query);
+        // return respon dari http request
+        return $data
+        // tambahkan kolom untuk button detail dan ubah
+        ->addColumn('action', function($mk)
+        {
+            return '<a href="'.route('mata_kuliah.show', ['mata_kuliah' => $mk->id])
+            .'" class="btn btn-xs btn-primary mr-1">Detail</a>'
+            .'<a href="'.route('mata_kuliah.edit',['mata_kuliah' => $mk->id ])
+            .'" class="btn btn-xs btn-success mr-1">Ubah</a>'
+            .'<form action='. route('mata_kuliah.destroy', ['mata_kuliah' => $mk->id]) 
+            .' method="post"><input type="hidden" value="DELETE" name="_method"><input type="hidden" name="_token" value="' . csrf_token()
+            .'"><button class="btn btn-xs btn-danger" type="submit" onclick="return confirm(\'Data mau dihapus?\')">Hapus</button></form>'
+            ;
+        })->make(true);
     }
 
     /**
@@ -29,7 +57,7 @@ class MkController extends Controller
     public function create()
     {
        // memanggil view tambah
-        return view('create');
+        return view('mk.create');
     }
 
     /**
@@ -40,12 +68,13 @@ class MkController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(['mata_kuliah' => 'required']);
         // insert data ke table dosen
-        DB::table('mata_kuliah')->insert([
-            'id_mk' => $request->id_mk,
-            'mata_kuliah' => $request->mata_kuliah,
-            'dosen_nip' => $request->dosen_nip
-        ]);
+
+        // dd($request->mata_kuliah);
+        Mk::create(
+            ['mata_kuliah' => $request->mata_kuliah]
+        );
         // alihkan halaman ke halaman dosen
         return redirect('/mata_kuliah');
     }
@@ -56,9 +85,12 @@ class MkController extends Controller
      * @param  \App\Mk  $mk
      * @return \Illuminate\Http\Response
      */
-    public function show(Mk $mk)
+    public function show(Mk $mk, Request $request)
     {
         //
+        $mk = Mk::where('id','=',explode('/',$request->fullUrl())[4])->get()[0];
+        // dd($mk);
+        return view('mk.show', compact('mk'));
     }
 
     /**
@@ -67,12 +99,13 @@ class MkController extends Controller
      * @param  \App\Mk  $mk
      * @return \Illuminate\Http\Response
      */
-    public function edit(Mk $mk)
+    public function edit(Mk $mk, Request $request)
     {
         // mengambil data dosen berdasarkan id yang dipilih
-        $mata_kuliah = DB::table('mata_kuliah')->where('id_mk',$id_mk)->get();
+        $mk = Mk::where('id','=',explode('/',$request->fullUrl())[4])->get()[0];
         // passing data dosen yang didapat ke view edit.blade.php
-        return view('edit',['mata_kuliah' => $mata_kuliah]);
+        // dd($mk);
+        return view('mk.edit',['mk' => $mk]);
     }
 
     /**
@@ -85,12 +118,9 @@ class MkController extends Controller
     public function update(Request $request, Mk $mk)
     {
       // update data dosen
-        DB::table('mata_kuliah')->where('id_mk',$request->id_mk)->update([
-            'id_mk' => $request->id_mk,
-            'mata_kuliah' => $request->mata_kuliah,
-            'dosen_nip' => $request->dosen_nip
-            
-        ]);
+        $id = explode('/',$request->fullUrl()[4]);
+        Mk::where('id','=',explode('/',$request->fullUrl())[4])
+            ->update(['mata_kuliah' => $request->mata_kuliah]);
         // alihkan halaman ke halaman dosen
         return redirect('/mata_kuliah');
     }
@@ -101,10 +131,11 @@ class MkController extends Controller
      * @param  \App\Mk  $mk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mk $mk)
+    public function destroy(Mk $mk, Request $request)
     {
        // menghapus data dosen berdasarkan id yang dipilih
-        DB::table('mata_kuliah')->where('id_mk',$id_mk)->delete();
+        // dd(explode('/',$request->fullUrl())[4]);
+        Mk::destroy(explode('/',$request->fullUrl())[4]);
         
         // alihkan halaman ke halaman dosen
         return redirect('/mata_kuliah');

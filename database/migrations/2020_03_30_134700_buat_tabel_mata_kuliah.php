@@ -13,10 +13,9 @@ class BuatTabelMataKuliah extends Migration
      */
     public function up()
     {
-        Schema::create('mata_kuliah', function (Blueprint $table) {
+        Schema::create('matkul', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('kelas', 6);
-            $table->string('gedung', 2);
+            $table->string('mata_kuliah', 25);
             $table->timestamps();
             $table->softDeletesTz();
         });
