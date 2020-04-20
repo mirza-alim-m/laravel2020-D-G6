@@ -78,20 +78,20 @@ p-0 collapse d-md-inline" id="sidebar-nav">
                 <ul class="polished-sidebar-menu ml-0 pt-4 p-0 d-md-block">
                     <input class="border-dark form-control d-block d-md-none
 mb-4" type="text" placeholder="Search" aria-label="Search" />
-                    <li><a href="/home"><span class="oi oi-dashboard"></span>
+                    <li><a href="#"><span class="oi oi-dashboard"></span>
                             Dashboard</a></li>
-                            <li><a href="#"><span class="oi oi-people">
-                            </span> Nama Dosen</a></li>
-                            <li><a href="#"><span class="oi oi-book">
+                            <li><a href="{{route('dosens.index')}}"><span class="oi oi-people">
+                            </span> Dosen</a></li>
+                            <li><a href="{{route('mata_kuliah.index')}}"><span class="oi oi-book">
                             </span>MK</a></li>
                             <li><a href="{{route('ruang.index')}}"><span class="oi oi-home">
                             </span> Ruang</a></li>
-                            <li><a href="#"><span class="oi oi-clock">
+                            <li><a href="{{route('jamkuliah.index')}}"><span class="oi oi-clock">
                             </span> Jam Masuk</a></li>
                     <div class="d-block d-md-none">
                         <div class="dropdown-divider"></div>
-                        <li><a href="#"> Profile</a></li>
-                        <li><a href="#"> Setting</a></li>
+                        {{-- <li><a href="#"> Profile</a></li>
+                        <li><a href="#"> Setting</a></li> --}}
                         <li>
                           {{--  <form action="{{route("logout")}}" method="POST">
                                 @csrf
