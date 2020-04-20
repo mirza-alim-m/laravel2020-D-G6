@@ -21,8 +21,10 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/dosens', 'DosensController');
 Route::resource("ruang", "RuangController");
 Route::resource("mata_kuliah", "MkController");
+Route::resource("jamkuliah", "JamkuliahController");
 Route::get('dosensdata', 'DosensController@json')->name('datatables.dosens');
 Route::get('matkuldata', 'MkController@json')->name('datatables.matkul');
+Route::get('jamkuliahdata', 'JamkuliahController@json')->name('datatables.jamkuliah');
 Route::get('/caridosen', 'DosensController@search')->name('caridosen');
 Route::get('/caridosen-matkul', 'DosensController@carimatakuliah')->name('caridosen-matkul');
 
