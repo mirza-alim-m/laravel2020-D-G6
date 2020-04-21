@@ -54,4 +54,4 @@ exit();
 php artisan serve
 
 # DEMO
-http://laravel-d3.tegalian.com/
+http://laravel-d6.tegalian.com/
