@@ -45,7 +45,7 @@ factory(App\Dosens::class, 100)->create();
 
 factory(App\Jam_Kuliah::class, 100)->create();
 
-factory(App\MK::class, 100)->create();
+factory(App\Mk::class, 100)->create();
 
 factory(App\Ruang::class, 100)->create();
 
