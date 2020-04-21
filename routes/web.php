@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 //route CRUD
 
-// Route::get('/', function () {
-//     return view('auth.login');
-// });
+Route::get('/', function () {
+     return redirect(route('jamkuliah.index'));
+});
 
 Route::resource('/dosens', 'DosensController');
 Route::resource("ruang", "RuangController");
