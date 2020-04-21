@@ -49,7 +49,7 @@ factory(App\MK::class, 100)->create();
 
 factory(App\Ruang::class, 100)->create();
 
->>> exit();
+exit();
 
 php artisan serve
 
