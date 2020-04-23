@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mk;
+use App\Dosens;
 use Datatables;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,7 @@ class MkController extends Controller
             .'" class="btn btn-xs btn-primary mr-1">Detail</a>'
             .'<a href="'.route('mata_kuliah.edit',['mata_kuliah' => $mk->id ])
             .'" class="btn btn-xs btn-success mr-1">Ubah</a>'
-            .'<form action='. route('mata_kuliah.destroy', ['mata_kuliah' => $mk->id]) 
+            .'<form action='. route('mata_kuliah.destroy', ['mata_kuliah' => $mk->id])
             .' method="post"><input type="hidden" value="DELETE" name="_method"><input type="hidden" name="_token" value="' . csrf_token()
             .'"><button class="btn btn-xs btn-danger" type="submit" onclick="return confirm(\'Data mau dihapus?\')">Hapus</button></form>'
             ;
@@ -88,8 +89,9 @@ class MkController extends Controller
     public function show(Mk $mk, Request $request)
     {
         //
-        $mk = Mk::where('id','=',explode('/',$request->fullUrl())[4])->get()[0];
-        // dd($mk);
+        $mk = Mk::with('dosens');
+        $mk->where('id','=',explode('/',$request->fullUrl())[4]);
+        $mk = $mk->get()[0];
         return view('mk.show', compact('mk'));
     }
 
@@ -136,7 +138,7 @@ class MkController extends Controller
        // menghapus data dosen berdasarkan id yang dipilih
         // dd(explode('/',$request->fullUrl())[4]);
         Mk::destroy(explode('/',$request->fullUrl())[4]);
-        
+
         // alihkan halaman ke halaman dosen
         return redirect('/mata_kuliah');
     }
