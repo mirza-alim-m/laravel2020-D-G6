@@ -12,6 +12,6 @@ class Mk extends Model
 
     //relasi tabel
     public function dosens(){
-        return $this->hasMany('App\Dosens');
+        return $this->hasMany('App\Dosens', 'id');
     }
 }
