@@ -35,3 +35,7 @@ Route::get('/caridosen-matkul', 'DosensController@carimatakuliah')->name('carido
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::post('/dosens/tambah', 'DosensController@store');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
