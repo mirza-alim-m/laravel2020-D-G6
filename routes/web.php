@@ -39,3 +39,7 @@ Route::get('/caridosen-matkul', 'DosensController@carimatakuliah')->name('carido
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
