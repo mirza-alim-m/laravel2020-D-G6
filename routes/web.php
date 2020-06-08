@@ -36,10 +36,10 @@ Route::get('/caridosen-matkul', 'DosensController@carimatakuliah')->name('carido
 
 // Route::post('/dosens/tambah', 'DosensController@store');
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
