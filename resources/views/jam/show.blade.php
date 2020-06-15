@@ -5,6 +5,9 @@
 <div class="col-md-12">
     <div class="card">
     <div class="card-body">
+      <div class="col-2">Image</div>
+      <div class="col-1">:</div>
+      <div class="col-7"><img src="" alt=""></div>
     <b>Dosen:</b> <br/>
     {{$jam_Kuliah->dosens->dosen_nama}}
     <br/>
