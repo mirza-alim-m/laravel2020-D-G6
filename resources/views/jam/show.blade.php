@@ -5,6 +5,15 @@
 <div class="col-md-12">
     <div class="card">
     <div class="card-body">
+      <div class="row">
+
+      <div class="col-2">pdf</div>
+      <div class="col-1">:</div>
+      <div class="col-7"><img width="250px" src="{{asset('storage/'.$jamkuliah->file) }}">dokumen.pdf{{-- explode ('/',$jamkuliah->file)[1] -- </a></div>
+
+      <div class="col-2">Image</div>
+      <div class="col-1">:</div>
+      <div class="col-7"><img width="250px" src="{{asset('storage/'.jamkuliah->image)}}" alt=""></div>
     <b>Dosen:</b> <br/>
     {{$jam_Kuliah->dosens->dosen_nama}}
     <br/>
