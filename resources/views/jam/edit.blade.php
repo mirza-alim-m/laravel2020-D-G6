@@ -9,6 +9,13 @@
     @endif
     <form class="bg-white shadow-sm p-3" action="{{route('jamkuliah.update', ['jamkuliah' => $jam_Kuliah->id])}}" method="POST">
         @csrf
+        <div class="row mt-2">
+        <div class="col-2">pdf</div><input class="form-control col-6" type="file" name="file" required="required">
+        </div>
+
+        <div class="row mt-2">
+        <div class="col-2">Image</div><input class="form-control col-6" type="file" name="image" required="required">
+        </div>
         @method('PATCH')
         <label for="dosen_id">Dosen</label>
         <select class="form-control" name="dosen_id" required>

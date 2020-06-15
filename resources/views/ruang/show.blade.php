@@ -5,6 +5,17 @@ ss@extends('layouts.global')
 <div class="col-md-8">
     <div class="card">
     <div class="card-body">
+    <div class="row">
+<div class="col-2">Pdf</div>
+    <div class="col-1">:</div>
+    <div class="col-7"><a href="{{ asset('storage/'. $ruang->file) }}">dokumen.pdf{{-- explode('/',$ruang->file)[1] --}}</a></div>
+    </div>
+
+    <div class="col-2">Image</div>
+    <div class="col-1">:</div>
+    <div class="col-7"><img width="250px" src="{{asset('storage/'. $ruang->image)}}" alt=""></div>
+    </div>
+
     <b>Kelas:</b> <br/>
     {{$ruang->kelas}}
     <br><br>

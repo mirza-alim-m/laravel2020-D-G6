@@ -43,9 +43,38 @@ class RuangController extends Controller
     public function store(Request $request)
     {
         //
+
+        $request->validate(['ruang'=>'required'
+        ,'kelas' => 'required'
+        ,'gedung' => 'required'
+        ,'image' => 'image|mimes:jpeg,png,jpg,gif|max5000']);
+       
+
+        $ruang = new Ruang();
+        $ruang -> kelas = $request->kelas;
+        $ruang -> gedung = $request->gedung;
+
+        if ($request->has('image')) {
+            $path = $request->file('image')->store('public/image');
+            $file = explode('/',path);
+            $name = $file[1] . '/' .$file[2];
+            $ruang->image = $name;
+        } else {
+            $ruang->image = 'image/default.jpg';
+        }
+
+        if ($request->has('file')) {
+            $path = $request->file('file')->store('public/file');
+            $file = explode('/',path);
+            $name = $file[1] . '/' .$file[2];
+            $ruang->file = $name;
+        } 
+            
+
         $new_ruang = new \App\Ruang;
         $new_ruang->kelas = $request->get('kelas');
         $new_ruang->gedung = $request->get('gedung');
+
 
         $new_ruang->save();
         return redirect()->route('ruang.index')->with('status', 'Ruang
