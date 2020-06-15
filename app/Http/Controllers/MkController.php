@@ -70,14 +70,29 @@ class MkController extends Controller
     public function store(Request $request)
     {
         $request->validate(['mata_kuliah' => 'required']);
+            ,'mata_kuliah' => 'required'
+            ,'image' => 'image|mimes:jpeg,png,jpg,gif|max5000'
         // insert data ke table dosen
-
         // dd($request->mata_kuliah);
         Mk::create(
-            ['mata_kuliah' => $request->mata_kuliah]
-        );
+            ['mata_kuliah' => $request->mata_kuliah]);
+        $mk = new Mk();
+        $mk-> mata_kuliah = $request->mata_kuliah;
+        if ($request->has('image')){
+            $path = $request->file('image')->store('public(image)');
+            $file = explode('/',path);
+            $name = $file[1] . '/' .$file[2];
+            $mk->image = $name;
+        }else {
+            $mk->image = 'image/default.jpg';
+        }
+
+        $new_mk = new \App\mata_kuliah;
+        $new_mk->mata_kuliah = $request->get('mata_kuliah');
+
+        $new_mk->save();
         // alihkan halaman ke halaman dosen
-        return redirect('/mata_kuliah');
+        return redirect()->route('mk.index')->with('status', 'mk successfully created');
     }
 
     /**

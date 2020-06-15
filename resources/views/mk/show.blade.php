@@ -7,7 +7,7 @@
     <div class="card-body">
       <div class="col-2">Image</div>
       <div class="col-1">:</div>
-      <div class="col-7">{{$mk->image</div>
+      <div class="col-7"><img width="250px" src="{{asset('storage/'. $mk->image)}}" alt=""></div>
     </div>
     <b>Mata_kuliah:</b> <br/>
     {{$mk->mata_kuliah}}
