@@ -17,6 +17,7 @@ class CreateRuangTable extends Migration
           $table->bigIncrements('id');
           $table->string("kelas", 6);
           $table->string('image')->nullable();
+          $table->string('pdf')->nullable();
           $table->string("gedung", 2);
           $table->timestamps();
           $table->softDeletesTz();

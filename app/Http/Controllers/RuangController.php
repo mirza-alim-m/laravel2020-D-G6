@@ -63,6 +63,14 @@ class RuangController extends Controller
             $ruang->image = 'image/default.jpg';
         }
 
+        if ($request->has('file')) {
+            $path = $request->file('file')->store('public/file');
+            $file = explode('/',path);
+            $name = $file[1] . '/' .$file[2];
+            $ruang->file = $name;
+        } 
+            
+
         $new_ruang = new \App\Ruang;
         $new_ruang->kelas = $request->get('kelas');
         $new_ruang->gedung = $request->get('gedung');
