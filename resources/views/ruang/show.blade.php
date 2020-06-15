@@ -5,6 +5,10 @@ ss@extends('layouts.global')
 <div class="col-md-8">
     <div class="card">
     <div class="card-body">
+      <div class="col-2">Image</div>
+      <div class="col-1">:</div>
+      <div class="col-7"><img src="" alt=""></div>
+    </div>
     <b>Kelas:</b> <br/>
     {{$ruang->kelas}}
     <br><br>
