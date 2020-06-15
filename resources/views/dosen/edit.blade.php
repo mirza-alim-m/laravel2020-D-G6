@@ -14,9 +14,12 @@
 	<br/>
 	<br/>
 
-	<form action="{{route('dosens.update', ['dosen' => $dosen->id])}}" method="post" class="form m-3">
+	<form enctype="multipart/form-data" action="{{route('dosens.update', ['dosen' => $dosen->id])}}" method="post" class="form m-3">
 		@method('put')
 		@csrf
+		<div class="row mt-2">
+		<div class="col-2">Image</div><input class="form-control col-6" type="file" name="image" required="required">
+		</div>
 		<div class="row mt-2">
 		<div class="col-2">Nama</div><input class="form-control col-6" type="text" name="dosen_nama" required="required" value="{{$dosen->dosen_nama}}">
 		</div>
