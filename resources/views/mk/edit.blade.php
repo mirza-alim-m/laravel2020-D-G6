@@ -10,6 +10,9 @@
     <form class="bg-white shadow-sm p-3" action="{{route('mata_kuliah.update', ['mata_kuliah'=> @$mk->id])}}"
         method="POST">
         @csrf
+        <div class="row mt-2">
+        <div class="col-2">Image<div><input class="form-control col-6" type="file" name="Image" required="required">
+        </div>
         <input type="hidden" value="PUT" name="_method">
         <label for="mata_kuliah">Mata Kuliah</label>
         <input class="form-control" placeholder="Mata Kuliah" type="text" name="mata_kuliah"

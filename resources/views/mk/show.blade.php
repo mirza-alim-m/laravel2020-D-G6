@@ -5,6 +5,10 @@
 <div class="col-md-12">
     <div class="card">
     <div class="card-body">
+      <div class="col-2">Image</div>
+      <div class="col-1">:</div>
+      <div class="col-7">{{$mk->image</div>
+    </div>
     <b>Mata_kuliah:</b> <br/>
     {{$mk->mata_kuliah}}
     <br><br>
