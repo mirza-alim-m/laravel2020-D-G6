@@ -81,6 +81,35 @@ class JamKuliahController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([jam_Kuliah=> 'required'
+            ,'dosen_id'=>'required'
+            ,'ruang_id'>'required'
+            ,'tanggal'=>'required'
+            ,'jam'=>'required'
+            ,'image'=>'image|mimes:jpeg,png,jpg,gif|max5000']);
+            
+            $jam_Kuliah = new jam_Kuliah();
+            $jam_Kuliah -> dosen_id=$request->dosen_id;
+            $jam_Kuliah -> ruang_id=$request->ruang_id;
+            $jam_Kuliah -> tanggal=$request->tanggal;
+            $jam_Kuliah -> jam=$request->jam;
+
+            if ($request-> has('image')) {
+                $path = $request->file('images')->store('public/images');
+                $file = explode('/', path);
+                $name = $file[1] . '/'. $file[2];
+                $jam_Kuliah->image=$name;
+            } else {
+                $ruang->image='images/default.jpg';
+            }
+            if ($request-> has('image')) {
+                $path = $request->file('images')->store('public/images');
+                $file = explode('/', path);
+                $name = $file[1] . '/'. $file[2];
+                $jam_Kuliah->pdf=$name;
+           
+            }
+
         //
         // $request->validate(['dosen_id' => 'required|numeric'
         //     ,'ruang_id' => 'required|numeric'
@@ -88,8 +117,8 @@ class JamKuliahController extends Controller
         //     ,'jam' => 'required']);
         // $request =
         // dd($request);
-        Jam_Kuliah::create($request->all());
-        return redirect('/jamkuliah')->with('info', 'Dosen telah terdata.');
+        //Jam_Kuliah::create($request->all());
+        //ZZreturn redirect('/jamkuliah')->with('info', 'Dosen telah terdata.');
     }
 
     /**
