@@ -7,7 +7,7 @@ ss@extends('layouts.global')
     <div class="card-body">
       <div class="col-2">Image</div>
       <div class="col-1">:</div>
-      <div class="col-7"><img src="" alt=""></div>
+    <div class="col-7"><img width="250px" src="{{asset('storage/'. $ruang->image)}}" alt=""></div>
     </div>
     <b>Kelas:</b> <br/>
     {{$ruang->kelas}}
