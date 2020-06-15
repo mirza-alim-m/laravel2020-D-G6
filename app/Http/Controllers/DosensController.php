@@ -9,6 +9,10 @@ use Datatables;
 
 class DosensController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -140,9 +144,34 @@ class DosensController extends Controller
             ,'dosen_nip' => 'required'
             ,'mata_kuliah_id' => 'required'
             ,'dosen_no_telpon' => 'required'
-            ,'dosen_alamat' => 'required']);
-        Dosens::create($request->all());
-        return redirect('/dosens')->with('info', 'Dosen telah terdata.');
+            ,'image' => 'images|mimes:jpeg,png,jpg,gif|max5000'
+            ,'dosen_alamat' => 'required'
+            ,'file' => 'mimes:pdf']);
+        
+
+        $dosen = new Dosens();
+        $dosen-> dosen_nama = $request->dosen_nama;
+        $dosen-> dosen_nip = $request->dosen_nip;
+        $dosen-> mata_kuliah_id = $request->mata_kuliah_id;
+        $dosen-> dosen_no_telpon = $request->dosen_no_telpon;
+        $dosen-> dosen_alamat = $request->dosen_alamat;
+
+        if ($request->has('image')) {
+            $path = $request->file('images')->store('public/images');
+            $file = explode('/',path);
+            $name = $file[1] . '/' . $file[2];
+            $dosen->image = $name;
+
+        } else {
+            $dosen->image = 'images/default.jpg';
+        }
+        if ($request->has('file')) {
+             $path = $request->file('file')->store('public/files');
+             $file = explode('/',path);
+             $name = $file[1] . '/' . $file[2];
+             $dosen->file = $name;
+        }
+        
     }
 
     /**
