@@ -14,7 +14,7 @@
         <div class="col-2">File</div><input class="form-control col-6" type="file" name="file" required="required">
         </div>
         <div class="row mt-2">
-        <div class="col-2">Image</div><input class="form-control col-6" type="file" name="image" required="required">
+        <div class="col-2">Im[age</div><input class="form-control col-6" type="file" name="image" required="required">
         </div>
         <label for="kelas">Kelas</label>
         <input class="form-control" placeholder="Ruang Kelas" type="text" name="kelas" id="kelas" />

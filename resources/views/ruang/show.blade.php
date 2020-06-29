@@ -1,4 +1,4 @@
-ss@extends('layouts.global')
+@extends('layouts.global')
 @section('title') Detail Ruang @endsection
 @section('content')
 
@@ -8,14 +8,14 @@ ss@extends('layouts.global')
     <div class="row">
 <div class="col-2">Pdf</div>
     <div class="col-1">:</div>
-    <div class="col-7"><a href="{{ asset('storage/'. $ruang->file) }}">dokumen.pdf{{-- explode('/',$ruang->file)[1] --}}</a></div>
+    <div class="col-7"><a href="{{ asset('storage/'. $ruang->file) }}">{{ explode('/',$ruang->file)[0] }}</a></div>
     </div>
 
     <div class="col-2">Image</div>
     <div class="col-1">:</div>
     <div class="col-7"><img width="250px" src="{{asset('storage/'. $ruang->image)}}" alt=""></div>
     </div>
-
+`
     <b>Kelas:</b> <br/>
     {{$ruang->kelas}}
     <br><br>
@@ -24,7 +24,7 @@ ss@extends('layouts.global')
     {{$ruang->gedung}}
     <br/><br/>
     <b>Relasi Jam Kuliah:</b> <br/>
-    <table class="table table-bordered">
+    {{-- <table class="table table-bordered">
       <thead>
         <tr>
           <td>id</td>
@@ -49,7 +49,7 @@ ss@extends('layouts.global')
         </tr>
         @endforeach
       </tbody>
-    </table>
+    </table> --}}
     <br><br>
     <a href="{{route('ruang.index')}}" class="btn btn-danger">Back</a>
 

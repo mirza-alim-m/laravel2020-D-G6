@@ -12,4 +12,6 @@ class Ruang extends Model
         'kelas'
         ,'gedung'
     ];
+
+    
 }

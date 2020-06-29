@@ -47,7 +47,8 @@ class RuangController extends Controller
         $request->validate(['ruang'=>'required'
         ,'kelas' => 'required'
         ,'gedung' => 'required'
-        ,'image' => 'image|mimes:jpeg,png,jpg,gif|max5000']);
+        ,'image' => 'image|mimes:jpeg,png,jpg,gif|max:5000'
+        ,'file' => 'mimes:pdf']);
        
 
         $ruang = new Ruang();
@@ -56,21 +57,21 @@ class RuangController extends Controller
 
         if ($request->has('image')) {
             $path = $request->file('image')->store('public/image');
-            $file = explode('/',path);
+            $file = explode('/',$path);
             $name = $file[1] . '/' .$file[2];
-            $ruang->image = $name;
+            $ruang->image = $ruang;
         } else {
             $ruang->image = 'image/default.jpg';
         }
 
         if ($request->has('file')) {
             $path = $request->file('file')->store('public/file');
-            $file = explode('/',path);
+            $file = explode('/',$path);
             $name = $file[1] . '/' .$file[2];
-            $ruang->file = $name;
+            $ruang->file = $ruang;
         } 
+        return back();
             
-
         $new_ruang = new \App\Ruang;
         $new_ruang->kelas = $request->get('kelas');
         $new_ruang->gedung = $request->get('gedung');
