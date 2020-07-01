@@ -17,7 +17,15 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-
+Route::get('/', function ()
+{
+    return response()->json(['message' => 'Halo']);
+});
+Route::get('dosen', 'API\DosensController@index');
+Route::get('dosen/siapa/{dosens}', 'API\DosensController@show');
+Route::post('dosen/tambah', 'API\DosensController@store');
+Route::put('dosen/ubah', 'API\DosensController@update');
+Route::delete('dosen/hapus/{dosens}', 'API\DosensController@destroy');
 Route::post('login', 'Auth\LoginController@apilogin');
 Route::middleware('auth:api')->group(function () {
     Route::post('logout', 'Auth\LoginController@apilogout');

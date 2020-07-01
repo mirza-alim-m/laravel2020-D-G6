@@ -144,9 +144,9 @@ class DosensController extends Controller
             ,'dosen_nip' => 'required'
             ,'mata_kuliah_id' => 'required'
             ,'dosen_no_telpon' => 'required'
-            ,'image' => 'images|mimes:jpeg,png,jpg,gif|max5000'
+            ,'image' => 'images|mimes:jpeg,png,jpg,gif|max5000|nullable'
             ,'dosen_alamat' => 'required'
-            ,'file' => 'mimes:pdf']);
+            ,'file' => 'mimes:pdf|nullable']);
         
 
         $dosen = new Dosens();
@@ -171,6 +171,9 @@ class DosensController extends Controller
              $name = $file[1] . '/' . $file[2];
              $dosen->file = $name;
         }
+        $dosen->save();
+
+        return redirect(route('dosens.index'))->with('info', 'Dosen telah di-store.');
         
     }
 

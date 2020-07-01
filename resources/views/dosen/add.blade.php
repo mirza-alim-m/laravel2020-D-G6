@@ -17,10 +17,10 @@
 	<form enctype="multipart/form-data" action="/dosens" method="post" class="bg-white shadow-sm p-3">
 		@csrf
 		<div class="row mt-2">
-		<div class="col-2">Pdf</div><input class="form-control col-6" type="file" name="file" required="required">
+		<div class="col-2">Pdf</div><input class="form-control col-6" type="file" name="file">
 		</div>
 		<div class="row mt-2">
-		<div class="col-2">Image</div><input class="form-control col-6" type="file" name="image" required="required">
+		<div class="col-2">Image</div><input class="form-control col-6" type="file" name="image">
 		</div>
 		<div class="row mt-2">
 		<div class="col-2">Nama</div><input class="form-control col-6" type="text" name="dosen_nama" required="required">
