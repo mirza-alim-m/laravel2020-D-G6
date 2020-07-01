@@ -63,5 +63,5 @@ class LoginController extends Controller
         return response()->json(['message' => 'failed logout'], 401);
       }
       return response()->json(['message' => 'success logout'], 200);
-    }ss
+    }
 }
