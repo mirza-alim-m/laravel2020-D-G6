@@ -69,9 +69,9 @@ class MkController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['mata_kuliah' => 'required']);
+        $request->validate(['mata_kuliah' => 'required'
             ,'mata_kuliah' => 'required'
-            ,'image' => 'image|mimes:jpeg,png,jpg,gif|max5000'
+            ,'image' => 'image|mimes:jpeg,png,jpg,gif|max5000']);
         // insert data ke table dosen
         // dd($request->mata_kuliah);
         Mk::create(
