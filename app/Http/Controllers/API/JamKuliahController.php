@@ -16,8 +16,8 @@ class JamKuliahController extends Controller
     public function index()
     {
         //
-        $dosens = Dosens::all();
-        $response = ['Jam_Kuliah' => $Jam_Kuliah];
+        $JamKuliah= Jam_Kuliah::all();
+        $response = ['JamKuliah' => $JamKuliah];
         return response()->json($response);
     }
 
@@ -41,18 +41,20 @@ class JamKuliahController extends Controller
     {
         //
         $request->validate([
-            'dosen_id' => 'required'
+            'id' => 'required'
+            ,'dosen_id' => 'required'
             ,'ruang_id' => 'required|numeric'
-            ,'hari' => 'required|numeric'
             ,'jam' => 'required|numeric'
+            ,'hari' => 'required|numeric'
             ]);
             
-        $jam_Kuliah = new jam_Kuliah();
-        $jam_Kuliah-> dosen_id = $request->dosen_id;
-        $jam_Kuliah-> ruang_id = $request->ruang_id;
-        $jam_Kuliah-> hari = $request->hari;
-        $jam_Kuliah-> jam = $request->jam;
-        $jam_Kuliah-> save();
+        $JamKuliah = new Jam_Kuliah();
+        $JamKuliah-> id = $request->id;
+        $JamKuliah-> dosen_id = $request->dosen_id;
+        $JamKuliah-> ruang_id = $request->ruang_id;
+        $JamKuliah-> hari = $request->hari;
+        $JamKuliah-> jam = $request->jam;
+        $JamKuliah-> save();
         $response = ['pesan' => 'jam Kuliah telah dimasukkan'];
         return response()->json($response);
     }
@@ -63,11 +65,11 @@ class JamKuliahController extends Controller
      * @param  \App\Jam_Kuliah  $jam_Kuliah
      * @return \Illuminate\Http\Response
      */
-    public function show(Jam_Kuliah $jam_Kuliah)
+    public function show(JamKuliah $JamKuliah)
     {
         //
         $response = ['Pesan' => 'Ini data dosennya.',
-        'jam_Kuliah' => $jam_Kuliah];
+        'jamKuliah' => $JamKuliah];
         return response()->json($response);
     }
 
@@ -77,7 +79,7 @@ class JamKuliahController extends Controller
      * @param  \App\Jam_Kuliah  $jam_Kuliah
      * @return \Illuminate\Http\Response
      */
-    public function edit(Jam_Kuliah $jam_Kuliah)
+    public function edit(JamKuliah $JamKuliah)
     {
         //
     }
@@ -89,10 +91,11 @@ class JamKuliahController extends Controller
      * @param  \App\Jam_Kuliah  $jam_Kuliah
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jam_Kuliah $jam_Kuliah)
+    public function update(Request $request, JamKuliah $jamKuliah)
     {
         //
         $request->validate([
+            'id' => 'required',
             'dosen_id' => 'required',
             'ruang_id' => 'numeric'
             ,'hari' => 'numeric'
@@ -115,9 +118,9 @@ class JamKuliahController extends Controller
     
           jam_Kuliah::where('id', $request->id)
                       ->update($change);
-          $dosen = Dosens::find($request->id);
+          $JamKuliah = jam_Kuliah::find($request->id);
           $response = ['Pesan' => 'jam Kuliah berhasil diupdate.',
-          'jam_Kuliah' => $dosen];
+          'jam_Kuliah' => $jam_Kuliah];
           return response()->json($response);
     }
 
