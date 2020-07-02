@@ -41,8 +41,7 @@ class MkController extends Controller
     {
         $request->validate([
             'id' => 'required|numeric'
-            'mata_kuliah' => 'required'
-
+            ,'mata_kuliah' => 'required'
             ]);
 
         $mk = new Mk();
