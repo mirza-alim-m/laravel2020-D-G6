@@ -62,7 +62,7 @@ class MkController extends Controller
     {
        // memanggil view tambah
         $Mk = Mk::all();
-        return View('Mk.add', compact('Mk'))
+        return View('Mk.add', compact('Mk'));
     }
 
     /**
@@ -91,7 +91,7 @@ class MkController extends Controller
             $mk->image = 'image/default.jpg';
         }
 
-        $new_mk = new \App\mata_kuliah;
+        $new_mk = new \App\Mk;
         $new_mk->mata_kuliah = $request->get('mata_kuliah');
 
         $new_mk->save();

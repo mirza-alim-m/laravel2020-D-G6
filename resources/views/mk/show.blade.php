@@ -5,13 +5,19 @@
 <div class="col-md-12">
     <div class="card">
     <div class="card-body">
+      <div class="col-2">Pdf</div>
+      <div class="col-1">:</div>
+      <div class="col-7"><a href="{{asset('storage/'. $mk->file) }}">{{ exploade('/', $Mk->file)[0] }}</a></div> </div> 
+
       <div class="col-2">Image</div>
       <div class="col-1">:</div>
       <div class="col-7"><img width="250px" src="{{asset('storage/'. $mk->image)}}" alt=""></div>
     </div>
+
     <b>Mata_kuliah:</b> <br/>
     {{$mk->mata_kuliah}}
     <br><br>
+    
     <b>Relasi Dosen:</b> <br/>
     <table class="table table-bordered">
       <thead>
