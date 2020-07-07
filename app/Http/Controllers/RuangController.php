@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// use App\Ruang;
+use App\Ruang;
 use Illuminate\Http\Request;
 
 class RuangController extends Controller
@@ -36,7 +36,7 @@ class RuangController extends Controller
     {
         //
         $ruangs = Ruang::all();
-        return View('ruang.add', compact('ruangs'));
+        return View('ruang.create', compact('ruangs'));
     }
 
     /**
