@@ -158,7 +158,7 @@ class DosensController extends Controller
 
         if ($request->has('image')) {
             $path = $request->file('image')->store('public/images');
-            $file = explode('/',path);
+            $file = explode('/', $path);
             $name = $file[1] . '/' . $file[2];
             $dosen->image = $name;
 
@@ -167,7 +167,7 @@ class DosensController extends Controller
         }
         if ($request->has('file')) {
              $path = $request->file('file')->store('public/files');
-             $file = explode('/',path);
+             $file = explode('/', $path);
              $name = $file[1] . '/' . $file[2];
              $dosen->file = $name;
         }
