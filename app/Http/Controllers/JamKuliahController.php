@@ -72,7 +72,7 @@ class JamKuliahController extends Controller
     {
         //
         $Jam_kuliah=Jam_Kuliah::all();
-        return view('Jam_Kuliah.add', compact(Jam_Kuliah))
+        return view('Jam_Kuliah.add', compact(Jam_Kuliah));
        
     }
 
