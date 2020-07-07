@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class RuangController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +35,8 @@ class RuangController extends Controller
     public function create()
     {
         //
-        return view("ruang.create");
+        $ruangs = Ruang::all();
+        return View('ruang.add', compact('ruangs'));
     }
 
     /**
