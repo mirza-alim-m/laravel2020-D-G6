@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 
 class MkController extends Controller
 {
-    $Mk = Mk::all();
-        $response = ['Mk' => $Mk];
-        return response()->json($response);
+    
     /**
      * Display a listing of the resource.
      *
