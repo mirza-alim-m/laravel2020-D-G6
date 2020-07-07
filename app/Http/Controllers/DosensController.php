@@ -169,7 +169,7 @@ class DosensController extends Controller
              $path = $request->file('file')->store('public/files');
              $file = explode('/', $path);
              $name = $file[1] . '/' . $file[2];
-             $dosen->file = $name;
+             $dosen->pdf = $name;
         }
         $dosen->save();
 
