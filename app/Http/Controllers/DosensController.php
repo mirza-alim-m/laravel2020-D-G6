@@ -144,7 +144,7 @@ class DosensController extends Controller
             ,'dosen_nip' => 'required'
             ,'mata_kuliah_id' => 'required'
             ,'dosen_no_telpon' => 'required'
-            ,'image' => 'image|mimes:jpeg,png,jpg,gif|max5000|nullable'
+            ,'image' => 'image|mimes:jpeg,png,jpg,gif|max:5000|nullable'
             ,'dosen_alamat' => 'required'
             ,'file' => 'mimes:pdf|nullable']);
         
