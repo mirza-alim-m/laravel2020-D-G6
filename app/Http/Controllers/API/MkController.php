@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class MkController extends Controller
 {
+    public function_construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -29,6 +33,8 @@ class MkController extends Controller
     public function create()
     {
         //
+        $Mk = Mk::all();
+        return View('Mk.add', compact('Mk'))
     }
 
     /**
