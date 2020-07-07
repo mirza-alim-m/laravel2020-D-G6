@@ -51,6 +51,11 @@ factory(App\Ruang::class, 100)->create();
 
 exit();
 
+Selanjutnya kita akan membuat API pada project ini dengan cara :
+php artisan passport:install
+
+pastikan XAMPP sudah diaktifkan
+
 php artisan serve
 
 # DEMO
