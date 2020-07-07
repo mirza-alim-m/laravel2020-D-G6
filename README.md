@@ -15,7 +15,7 @@ Reza, Nadia, Heni, Anggit.
 - Clone repositori ini
 - git clone https://github.com/mirza-alim-m/laravel2020-D-G6
 - Install Laravel
-- composer install
+- composer update
 - Buat skema database di Aplikasi Manajemen Database yang Anda inginkan (XAMPP / POSTGRES / dll.) Dan edit file .env.example atau ubah nama menjadi .env 
 - Dalam praktek ini kami akan menggunakan database mysql (Xampp). Jika file .env atau .env.example hilang setelah komposer diinstal, maka cukup salin dari .env ini dan sesuaikan kode dengan case Anda
 
