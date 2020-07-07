@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class JamKuliahController extends Controller
 {
-    public_function_construct()
+    public function __construct()
     {
         $this->middleware('auth');
     }
