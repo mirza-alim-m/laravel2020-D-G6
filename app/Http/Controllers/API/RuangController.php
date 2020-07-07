@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class RuangController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +34,6 @@ class RuangController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
