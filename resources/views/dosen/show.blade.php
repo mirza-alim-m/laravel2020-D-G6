@@ -8,7 +8,7 @@
         <div class="row">
         <div class="col-2">Pdf</div>
             <div class="col-1">:</div>
-            <div class="col-7"><a href="{{ asset('storage/' . $dosen->file) }}">dokumen.pdf{{-- explode('/',$dosen->file)[1] -- }}</a></div>
+            <div class="col-7"><a href="{{ asset('storage/' . $dosen->file) }}">dokumen.pdf{{-- explode('/',$dosen->file)[1] --}}</a></div>
             </div>
             <div class="col-2">Image</div>
             <div class="col-1">:</div>
