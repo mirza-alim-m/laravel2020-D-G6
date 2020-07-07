@@ -94,7 +94,7 @@ class MkController extends Controller
 
         $new_mk->save();
         // alihkan halaman ke halaman dosen
-        return redirect()->route('mk.index')->with('status', 'mk successfully created');
+        return redirect()->route('mata_kuliah.index')->with('status', 'mata_kuliah successfully created');
     }
 
     /**
