@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class MkController extends Controller
 {
-    public function_construct()
+    public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:api');
     }
     /**
      * Display a listing of the resource.
