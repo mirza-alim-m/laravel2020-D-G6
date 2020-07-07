@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class JamKuliahController extends Controller
 {
+    public_function_construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -67,10 +71,9 @@ class JamKuliahController extends Controller
     public function create()
     {
         //
-        $dosen = Dosens::all();
-        $ruang = Ruang::all();
-        // $jam_Kuliah = Jam_Kuliah::all();
-        return view('jam.create', compact('dosen','ruang'));
+        $Jam_kuliah=Jam_Kuliah::all();
+        return view('Jam_Kuliah.add', compact(Jam_Kuliah))
+       
     }
 
     /**
