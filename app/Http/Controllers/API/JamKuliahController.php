@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class JamKuliahController extends Controller
 {
-    public function_construct ()
+   public function __construct()
     {
         $this->middleware('auth:api');
     }
@@ -33,8 +33,7 @@ class JamKuliahController extends Controller
     public function create()
     {
         //
-        $Jam_kuliah=Jam_Kuliah::all();
-        return view('Jam_Kuliah.add', compact(Jam_Kuliah))
+
     }
 
     /**
