@@ -58,5 +58,32 @@ pastikan XAMPP sudah diaktifkan
 
 php artisan serve
 
+Penggunaan API
+jika ingin menggunakan API ini, login dengan menggunakan username dan password.
+
+[POST] http://yourhostname/api/login
+        parameter: [username ~ registered_email, password] (all required)
+
+
+gunakan token (Bearer) kemudian akses url berikut.
+
+Dosen
+[GET] http://{yourhostname}/api/dosen
+[GET] http://{yourhostname}/api/dosen/{dosens}
+[POST] http://{yourhostname}/api/dosen 
+        parameter: [dosen_nama, dosen_nip (numeric), mata_kuliah_id (numeric), dosen_no_telpon(numeric), dosen_alamat (numeric)] (all required)
+[POST] http://{yourhostname}/api/dosen/{dosens} (untuk edit data dosen)
+        parameter: [dosen_nama, dosen_nip (numeric), mata_kuliah_id (numeric), dosen_no_telpon(numeric), dosen_alamat (numeric), _method=put]
+[DELETE] http://{yourhostname}/api/dosen/{dosens}
+
+MK
+[GET] http://{yourhostname}/api/Mk
+[GET] http://{yourhostname}/api/Mk/{mk}
+[POST] http://{yourhostname}/api/Mk
+        parameter: [id (numeric), mata_kuliah] (all required)
+[POST] http://{yourhostname}/api/Mk/{mk} (untuk edit data mk)
+        parameter: [id (numeric), mata_kuliah, _method=put]
+[DELETE] http://{yourhostname}/api/Mk/{mk}
+
 # DEMO
 http://laravel-d6.tegalian.com/
