@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 
 class MkController extends Controller
 {
+    $Mk = Mk::all();
+        $response = ['Mk' => $Mk];
+        return response()->json($response);
     /**
      * Display a listing of the resource.
      *
@@ -58,7 +61,8 @@ class MkController extends Controller
     public function create()
     {
        // memanggil view tambah
-        return view('mk.create');
+        $Mk = Mk::all();
+        return View('Mk.add', compact('Mk'))
     }
 
     /**

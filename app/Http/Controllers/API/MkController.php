@@ -20,9 +20,6 @@ class MkController extends Controller
     public function index()
     {
         //
-        $Mk = Mk::all();
-        $response = ['Mk' => $Mk];
-        return response()->json($response);
     }
 
     /**
@@ -33,8 +30,6 @@ class MkController extends Controller
     public function create()
     {
         //
-        $Mk = Mk::all();
-        return View('Mk.add', compact('Mk'))
     }
 
     /**
