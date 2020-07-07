@@ -73,7 +73,7 @@ class MkController extends Controller
     {
         $request->validate(['mata_kuliah' => 'required'
             ,'mata_kuliah' => 'required'
-            ,'image' => 'image|mimes:jpeg,png,jpg,gif|max5000']);
+            ,'image' => 'image|mimes:jpeg,png,jpg,gif|max:5000']);
         // insert data ke table dosen
         // dd($request->mata_kuliah);
         Mk::create(
