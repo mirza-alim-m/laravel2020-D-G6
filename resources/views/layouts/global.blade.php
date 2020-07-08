@@ -105,6 +105,8 @@ mb-4" type="text" placeholder="Search" aria-label="Search" />
                             </span> Ruang</a></li>
                             <li><a href="{{route('jamkuliah.index')}}"><span class="oi oi-clock">
                             </span> Jam Masuk</a></li>
+                            <li><a href="{{route('ubah.pass')}}"><span class="oi oi-people">
+                            </span> Change Password</a></li>
                     <div class="d-block d-md-none">
                         <div class="dropdown-divider"></div>
                         {{-- <li><a href="#"> Profile</a></li>

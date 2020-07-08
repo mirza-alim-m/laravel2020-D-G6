@@ -27,6 +27,8 @@ Route::get('matkuldata', 'MkController@json')->name('datatables.matkul');
 Route::get('jamkuliahdata', 'JamKuliahController@json')->name('datatables.jamkuliah');
 Route::get('/caridosen', 'DosensController@search')->name('caridosen');
 Route::get('/caridosen-matkul', 'DosensController@carimatakuliah')->name('caridosen-matkul');
+Route::get('/ubah-password', 'UsersController@edit')->name('ubah.pass');
+Route::post('/ubah-password', 'UsersController@update')->name('ubah.word');
 
 // Route::match(["GET", "POST"], "/register", function(){
 //     return redirect("/login");
