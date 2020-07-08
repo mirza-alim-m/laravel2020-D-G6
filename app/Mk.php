@@ -8,7 +8,7 @@ class Mk extends Model
 {
     //tabel mata kuliah
     protected $table = 'matkul';
-    protected $fillable = ['mata_kuliah'];
+    protected $fillable = ['mata_kuliah','image','pdf'];
 
     //relasi tabel
     public function dosens(){

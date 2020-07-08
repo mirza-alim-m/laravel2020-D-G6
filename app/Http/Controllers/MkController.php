@@ -72,14 +72,11 @@ class MkController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['mata_kuliah' => 'required'
-            ,'mata_kuliah' => 'required'
+        $request->validate([
+            'mata_kuliah' => 'required'
             ,'image' => 'image|mimes:jpeg,png,jpg,gif|max:5000|nullable'
             ,'file' => 'mimes:pdf|nullable']);
         // insert data ke table dosen
-        // dd($request->mata_kuliah);
-        Mk::create(
-            ['mata_kuliah' => $request->mata_kuliah]);
         $mk = new Mk();
         $mk-> mata_kuliah = $request->mata_kuliah;
 
@@ -97,11 +94,7 @@ class MkController extends Controller
             $name = $file[1] . '/' .$file[2];
             $mk->pdf = $name;
         }
-
-        $new_mk = new \App\Mk;
-        $new_mk->mata_kuliah = $request->get('mata_kuliah');
-
-        $new_mk->save();
+        $mk->save();
         // alihkan halaman ke halaman dosen
         return redirect()->route('mata_kuliah.index')->with('status', 'mata_kuliah successfully created');
     }
@@ -146,7 +139,7 @@ class MkController extends Controller
     public function update(Request $request, Mk $mk)
     {
       // update data dosen
-        $id = explode('/',$request->fullUrl()[4]);
+        $id = explode('/',$request->fullUrl())[4];
         $request->validate(['mata_kuliah' => 'required']);
         
         // alihkan halaman ke halaman dosen
@@ -171,8 +164,8 @@ class MkController extends Controller
             }
             $ubah['pdf'] = $name;
         }
-        // dd($ubah);
-        Mk::where('id', $mk->id)->update($ubah);
+        // dd($id);
+        Mk::where('id', $id)->update($ubah);
 
         return redirect('/mata_kuliah')->with('info', 'mk sudah di-update');
     }

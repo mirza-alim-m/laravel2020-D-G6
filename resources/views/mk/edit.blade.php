@@ -8,13 +8,13 @@
     </div>
     @endif
     <form class="bg-white shadow-sm p-3" action="{{route('mata_kuliah.update', ['mata_kuliah'=> @$mk->id])}}"
-        method="POST">
+        method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row mt-2">
         <div class="col-2">File<div><input class="form-control col-6" type="file" name="file" required="required">
         </div>
         <div class="row mt-2">
-        <div class="col-2">Image<div><input class="form-control col-6" type="file" name="Image" required="required">
+        <div class="col-2">Image<div><input class="form-control col-6" type="file" name="image" required="required">
         </div>
         <input type="hidden" value="PUT" name="_method">
         <label for="mata_kuliah">Mata Kuliah</label>

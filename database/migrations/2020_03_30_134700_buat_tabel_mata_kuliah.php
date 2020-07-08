@@ -17,6 +17,7 @@ class BuatTabelMataKuliah extends Migration
             $table->bigIncrements('id');
             $table->string('mata_kuliah', 40);
             $table->string('image')->nullable();
+            $table->string('pdf')->nullable();
             $table->timestamps();
             $table->softDeletesTz();
         });
