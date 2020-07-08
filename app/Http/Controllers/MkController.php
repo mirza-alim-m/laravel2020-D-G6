@@ -80,13 +80,20 @@ class MkController extends Controller
             ['mata_kuliah' => $request->mata_kuliah]);
         $mk = new Mk();
         $mk-> mata_kuliah = $request->mata_kuliah;
+
         if ($request->has('image')){
-            $path = $request->file('image')->store('public(image)');
+            $path = $request->file('image')->store('public/image');
             $file = explode('/',path);
             $name = $file[1] . '/' .$file[2];
             $mk->image = $name;
         }else {
             $mk->image = 'image/default.jpg';
+        }
+        if ($request->has('file')){
+            $path = $request->file('file')->store('public/files');
+            $file = explode('/',path);
+            $name = $file[1] . '/' .$file[2];
+            $mk->pdf = $name;
         }
 
         $new_mk = new \App\Mk;
@@ -142,6 +149,29 @@ class MkController extends Controller
             ->update(['mata_kuliah' => $request->mata_kuliah]);
         // alihkan halaman ke halaman dosen
         return redirect('/mata_kuliah');
+
+        if ($request->has('image')) {
+            $path = $request->file('image')->store('public/image');
+            $file = explode('/', $path);
+            $name = $file[1] . '/' . $file[2];
+            if ($mk->image != 'images/default.jpg' and $mk->image != null) {
+                storage::delete('public/' .$mk->image);
+            }
+            $Ubah['image'] = $name;
+        }
+        if ($request->has('file')) {
+            $path = $request->file('file')->store('public/file(filename)');
+            $file = explode('/', $path);
+            $name = $file[1] . '/' . $file[2];
+            if ($mk->file != null) {
+                storage::delete('public/' .$mk->file);
+            }
+            $Ubah['pdf'] = $name;
+        }
+        mk::where('id', $mk->id)->update($Ubah);
+        $mk->save();
+
+        return redirect('/mk')->with('info', 'mk sudah di-update');
     }
 
     /**
