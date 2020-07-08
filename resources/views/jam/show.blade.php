@@ -9,11 +9,12 @@
 
       <div class="col-2">Pdf</div>
       <div class="col-1">:</div>
-      <div class="col-7"><img width="250px" src="{{asset('storage/' . $jamkuliah->pdf) }}">dokumen.pdf</a></div>
+      <div class="col-7"><a href="{{asset('storage/' . $jam_Kuliah->pdf) }}">dokumen.pdf</a></div>
 
       <div class="col-2">Image</div>
       <div class="col-1">:</div>
-      <div class="col-7"><img width="250px" src="{{ asset('storage/'.jamkuliah->image )}}" alt=""></div>
+      <div class="col-7"><img width="250px" src="{{ asset('storage/'. $jam_Kuliah->image )}}" alt=""></div>
+      <br/><br/>
     <b>Dosen:</b> <br/>
     {{$jam_Kuliah->dosens->dosen_nama}}
     <br/>

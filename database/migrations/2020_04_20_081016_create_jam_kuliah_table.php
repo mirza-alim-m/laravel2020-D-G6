@@ -19,6 +19,7 @@ class CreateJamKuliahTable extends Migration
             $table->bigInteger('ruang_id')->unsigned()->index();
             $table->text('jam', 5);
             $table->text('hari', 9);
+            $table->string('image')->nullable();
             $table->string('pdf')->nullable();
             $table->timestamps();
             $table->softDeletesTz();

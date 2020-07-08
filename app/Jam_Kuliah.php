@@ -13,6 +13,8 @@ class Jam_Kuliah extends Model
         , 'ruang_id'
         , 'hari'
         , 'jam'
+        , 'image'
+        , 'pdf'
     ];
 
     public function dosens()

@@ -88,8 +88,8 @@ class JamKuliahController extends Controller
     public function store(Request $request)
     {
         $request->validate(['dosen_id'=>'required'
-            ,'ruang_id'>'required'
-            ,'tanggal'=>'required'
+            ,'ruang_id'=>'required'
+            ,'hari'=>'required'
             ,'jam'=>'required'
             ,'image'=>'image|mimes:jpeg,png,jpg,gif|max:5000|nullable'
             ,'file' => 'mimes:pdf|nullable']);
@@ -97,7 +97,7 @@ class JamKuliahController extends Controller
             $jam_Kuliah = new Jam_Kuliah();
             $jam_Kuliah -> dosen_id = $request->dosen_id;
             $jam_Kuliah -> ruang_id = $request->ruang_id;
-            $jam_Kuliah -> tanggal = $request->tanggal;
+            $jam_Kuliah -> hari = $request->hari;
             $jam_Kuliah -> jam = $request->jam;
 
             if ($request-> has('image')) {
