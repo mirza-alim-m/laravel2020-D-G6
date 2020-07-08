@@ -8,7 +8,7 @@
     <div class="row">
 <div class="col-2">Pdf</div>
     <div class="col-1">:</div>
-    <div class="col-7"><a href="{{ asset('storage/'. $ruang->file) }}">{{ explode('/',$ruang->file)[0] }}</a></div>
+    <div class="col-7"><a href="{{ asset('storage/'. $ruang->pdf) }}">{{ explode('/',$ruang->pdf)[0] }}</a></div>
     </div>
 
     <div class="col-2">Image</div>
@@ -24,7 +24,7 @@
     {{$ruang->gedung}}
     <br/><br/>
     <b>Relasi Jam Kuliah:</b> <br/>
-    {{-- <table class="table table-bordered">
+    <table class="table table-bordered">
       <thead>
         <tr>
           <td>id</td>
@@ -49,8 +49,9 @@
         </tr>
         @endforeach
       </tbody>
-    </table> --}}
+    </table>
     <br><br>
+    <a href="{{route('ruang.edit', ['ruang' => $ruang->id])}}" class="btn btn-succes">Edit</a>
     <a href="{{route('ruang.index')}}" class="btn btn-danger">Back</a>
 
 @endsection

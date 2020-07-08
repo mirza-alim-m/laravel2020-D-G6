@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ruang;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class RuangController extends Controller
@@ -49,40 +50,35 @@ class RuangController extends Controller
     {
         //
 
-        $request->validate(['ruang'=>'required'
-        ,'kelas' => 'required'
+        $request->validate([
+        'kelas' => 'required'
         ,'gedung' => 'required'
         ,'image' => 'image|mimes:jpeg,png,jpg,gif|max:5000'
         ,'file' => 'mimes:pdf']);
        
-
+        
         $ruang = new Ruang();
-        $ruang -> kelas = $request->kelas;
-        $ruang -> gedung = $request->gedung;
+        $ruang->kelas = $request->kelas;
+        $ruang->gedung = $request->gedung;
 
         if ($request->has('image')) {
-            $path = $request->file('image')->store('public/image');
+            $path = $request->file('image')->store('public/images');
             $file = explode('/',$path);
             $name = $file[1] . '/' .$file[2];
-            $ruang->image = $ruang;
+            $ruang->image = $name;
         } else {
             $ruang->image = 'image/default.jpg';
         }
 
-        if ($request->has('file')) {
-            $path = $request->file('file')->store('public/file');
+        if($request->has('file')){
+            $path = $request->file('file')->store('public/files');
             $file = explode('/',$path);
             $name = $file[1] . '/' .$file[2];
-            $ruang->file = $ruang;
-        } 
-        return back();
-            
-        $new_ruang = new \App\Ruang;
-        $new_ruang->kelas = $request->get('kelas');
-        $new_ruang->gedung = $request->get('gedung');
+            $ruang->pdf = $name;
+        }
+        
 
-
-        $new_ruang->save();
+        $ruang->save();
         return redirect()->route('ruang.index')->with('status', 'Ruang
         successfully created');
     }
@@ -120,15 +116,37 @@ class RuangController extends Controller
      * @param  \App\Ruang  $ruang
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Ruang $ruang)
     {
         //
-        $ruang = \App\Ruang::findOrFail($id);
-        $ruang->kelas = $request->get('kelas');
-        $ruang->gedung = $request->get('gedung');
+        $request->validate(['kelas' => 'required'
+        ,'gedung' => 'required']);
+    
+        $ubah = (['kelas' => $request->kelas
+        ,'gedung' => $request->gedung]);
+
+        if($request->has('image')){
+            $path = $request->file('image')->store('public/image');
+            $file = explode('/',$path);
+            $name = $file[1].'/'. $file[2];
+            if ($ruang->image != 'images/default.jpg' and $ruang->image != null){
+                Storage::delete('public/' .$ruang->image);
+            }
+            $ubah['image']= $name;
+        }
+        if($request->has('file')){
+            $path = $request->file('file')->store('public/file(filename)');
+            $file = explode('/',$path);
+            $name = $file[1].'/'. $file[2];
+            if ($ruang->pdf != null){
+                Storage::delete('public/' .$ruang->image);
+            }
+            $ubah['pdf']= $name;
+        }
+        Ruang::where('id',$ruang->id)->update($ubah);
         $ruang->save();
-        return redirect()->route('ruang.edit', [$id])->with('status', 'Ruang
-        succesfully updated');
+
+        return redirect ('/ruang')->with('info', 'Ruang telah di update');
     }
 
     /**

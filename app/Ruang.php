@@ -11,7 +11,14 @@ class Ruang extends Model
     protected $fillable = [
         'kelas'
         ,'gedung'
+        ,'image'
+        ,'pdf'
+        
     ];
+
+    public function jamkuliahs(){
+        return $this->hasMany('App\Jam_Kuliah', 'id');
+    }
 
     
 }

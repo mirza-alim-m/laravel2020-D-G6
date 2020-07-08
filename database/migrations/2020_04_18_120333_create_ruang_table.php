@@ -13,7 +13,7 @@ class CreateRuangTable extends Migration
      */
     public function up()
     {
-      Schema::create('ruangs', function (Blueprint $table) {
+      Schema::create('ruang', function (Blueprint $table) {
           $table->bigIncrements('id');
           $table->string("kelas", 6);
           $table->string('image')->nullable();
