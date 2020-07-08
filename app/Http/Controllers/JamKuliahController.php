@@ -8,6 +8,7 @@ use App\Dosens;
 use App\Ruang;
 use Datatables;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\storage;
 
 class JamKuliahController extends Controller
 {
@@ -71,8 +72,10 @@ class JamKuliahController extends Controller
     public function create()
     {
         //
+        $ruang = Ruang::all();
+        $dosen = Dosens::all();
         $Jam_kuliah=Jam_Kuliah::all();
-        return view('Jam_Kuliah.add', compact(Jam_Kuliah));
+        return view('jam.create', compact('Jam_kuliah','dosen','ruang'));
        
     }
 
@@ -84,34 +87,37 @@ class JamKuliahController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([jam_Kuliah=> 'required'
-            ,'dosen_id'=>'required'
+        $request->validate(['dosen_id'=>'required'
             ,'ruang_id'>'required'
             ,'tanggal'=>'required'
             ,'jam'=>'required'
-            ,'image'=>'image|mimes:jpeg,png,jpg,gif|max5000']);
+            ,'image'=>'image|mimes:jpeg,png,jpg,gif|max:5000|nullable'
+            ,'file' => 'mimes:pdf|nullable']);
             
-            $jam_Kuliah = new jam_Kuliah();
-            $jam_Kuliah -> dosen_id=$request->dosen_id;
-            $jam_Kuliah -> ruang_id=$request->ruang_id;
-            $jam_Kuliah -> tanggal=$request->tanggal;
-            $jam_Kuliah -> jam=$request->jam;
+            $jam_Kuliah = new Jam_Kuliah();
+            $jam_Kuliah -> dosen_id = $request->dosen_id;
+            $jam_Kuliah -> ruang_id = $request->ruang_id;
+            $jam_Kuliah -> tanggal = $request->tanggal;
+            $jam_Kuliah -> jam = $request->jam;
 
             if ($request-> has('image')) {
-                $path = $request->file('images')->store('public/images');
-                $file = explode('/', path);
+                $path = $request->file('image')->store('public/images');
+                $file = explode('/', $path);
                 $name = $file[1] . '/'. $file[2];
                 $jam_Kuliah->image=$name;
             } else {
                 $ruang->image='images/default.jpg';
             }
-            if ($request-> has('image')) {
-                $path = $request->file('images')->store('public/images');
-                $file = explode('/', path);
+            if ($request-> has('file')) {
+                $path = $request->file('file')->store('public/files');
+                $file = explode('/', $path);
                 $name = $file[1] . '/'. $file[2];
                 $jam_Kuliah->pdf=$name;
            
             }
+            $jam_Kuliah->save();
+
+            return redirect(route('jamkuliah.index'))->with('info', 'jam Kuliah telah di store.');
 
         //
         // $request->validate(['dosen_id' => 'required|numeric'
