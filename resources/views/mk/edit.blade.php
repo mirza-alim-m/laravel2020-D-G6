@@ -11,6 +11,9 @@
         method="POST">
         @csrf
         <div class="row mt-2">
+        <div class="col-2">File<div><input class="form-control col-6" type="file" name="file" required="required">
+        </div>
+        <div class="row mt-2">
         <div class="col-2">Image<div><input class="form-control col-6" type="file" name="Image" required="required">
         </div>
         <input type="hidden" value="PUT" name="_method">
