@@ -217,13 +217,34 @@ class DosensController extends Controller
             ,'mata_kuliah_id' => 'required'
             ,'dosen_no_telpon' => 'required'
             ,'dosen_alamat' => 'required']);
-        Dosens::where('id', $dosen->id)->update(
-            ['dosen_nama' => $request->dosen_nama
-            ,'dosen_nip' => $request->dosen_nip
-            ,'mata_kuliah_id' => $request->mata_kuliah_id
-            ,'dosen_no_telpon' => $request->dosen_no_telpon
-            ,'dosen_alamat' => $request->dosen_alamat]
-        );
+        
+        $ubah = ['dosen_nama' => $request->dosen_nama
+        ,'dosen_nip' => $request->dosen_nip
+        ,'mata_kuliah_id' => $request->mata_kuliah_id
+        ,'dosen_no_telpon' => $request->dosen_no_telpon
+        ,'dosen_alamat' => $request->dosen_alamat];
+            
+        if ($request->has('image')) {
+            $path = $request->file('image')->store('public/images');
+            $file = explode('/', $path);
+            $name = $file[1] . '/' . $file[2];
+            if ($dosen->image != 'images/default.jpg' and $dosen->image != null) {
+                Storage::delete('public/' . $dosen->image);
+            }
+            $ubah['image'] = $name;
+        } 
+        if ($request->has('file')) {
+            $path = $request->file('file')->store('public/files');
+            $file = explode('/', $path);
+            $name = $file[1] . '/' . $file[2];
+            if ($dosen->file != null) {
+                Storage::delete('public/' . $dosen->file);
+              }
+            $ubah['pdf'] = $name;
+        }
+        Dosens::where('id', $dosen->id)->update($ubah);
+        $dosen->save();
+
         return redirect('/dosens')->with('info', 'Dosen telah di-update.');
     }
 
