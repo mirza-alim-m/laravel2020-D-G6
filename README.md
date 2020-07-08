@@ -85,5 +85,22 @@ MK
         parameter: [id (numeric), mata_kuliah, _method=put]
 [DELETE] http://{yourhostname}/api/Mk/{mk}
 
+Ruang
+[GET] http://{yourhostname}/api/Ruang
+[GET] http://{yourhostname}/api/Ruang/{ruang}
+[POST] http://{yourhostname}/api/Ruang
+        parameter: [kelas, gedung] (all required)
+[POST] http://{yourhostname}/api/Ruang/{ruang} (untuk edit data ruang)
+        parameter: [kelas, gedung, _method=put]
+[DELETE] http://{yourhostname}/api/Ruang/{ruang}
+
+Jam Kuliah
+[GET] http://{yourhostname}/api/Jam_Kuliah
+[GET] http://{yourhostname}/api/Jam_Kuliah/{jam_kuliah}
+[POST] http://{yourhostname}/api/Jam_Kuliah
+        parameter: [dosen_id (numeric), ruang_id (numeric), hari, jam] (all required)
+[POST] http://{yourhostname}/api/Jam_Kuliah/{jam_kuliah} (untuk edit data jam kuliah)
+        parameter: [dosen_id (numeric), ruang_id (numeric), hari, jam, _method=put]
+[DELETE] http://{yourhostname}/api/Jam_Kuliah/{jam_kuliah}
 # DEMO
 http://laravel-d6.tegalian.com/

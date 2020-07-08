@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mk;
 use App\Dosens;
 use Datatables;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class MkController extends Controller
@@ -73,20 +74,28 @@ class MkController extends Controller
     {
         $request->validate(['mata_kuliah' => 'required'
             ,'mata_kuliah' => 'required'
-            ,'image' => 'image|mimes:jpeg,png,jpg,gif|max:5000']);
+            ,'image' => 'image|mimes:jpeg,png,jpg,gif|max:5000|nullable'
+            ,'file' => 'mimes:pdf|nullable']);
         // insert data ke table dosen
         // dd($request->mata_kuliah);
         Mk::create(
             ['mata_kuliah' => $request->mata_kuliah]);
         $mk = new Mk();
         $mk-> mata_kuliah = $request->mata_kuliah;
+
         if ($request->has('image')){
-            $path = $request->file('image')->store('public(image)');
-            $file = explode('/',path);
+            $path = $request->file('image')->store('public/images');
+            $file = explode('/',$path);
             $name = $file[1] . '/' .$file[2];
             $mk->image = $name;
         }else {
             $mk->image = 'image/default.jpg';
+        }
+        if ($request->has('file')){
+            $path = $request->file('file')->store('public/files');
+            $file = explode('/',$path);
+            $name = $file[1] . '/' .$file[2];
+            $mk->pdf = $name;
         }
 
         $new_mk = new \App\Mk;
@@ -138,10 +147,34 @@ class MkController extends Controller
     {
       // update data dosen
         $id = explode('/',$request->fullUrl()[4]);
-        Mk::where('id','=',explode('/',$request->fullUrl())[4])
-            ->update(['mata_kuliah' => $request->mata_kuliah]);
+        $request->validate(['mata_kuliah' => 'required']);
+        
         // alihkan halaman ke halaman dosen
-        return redirect('/mata_kuliah');
+
+        $ubah = ['mata_kuliah' => $request->mata_kuliah];
+
+        if ($request->has('image')) {
+            $path = $request->file('image')->store('public/images');
+            $file = explode('/', $path);
+            $name = $file[1] . '/' . $file[2];
+            if ($mk->image != 'images/default.jpg' and $mk->image != null) {
+                Storage::delete('public/' .$mk->image);
+            }
+            $ubah['image'] = $name;
+        }
+        if ($request->has('file')) {
+            $path = $request->file('file')->store('public/files');
+            $file = explode('/', $path);
+            $name = $file[1] . '/' . $file[2];
+            if ($mk->file != null) {
+                Storage::delete('public/' .$mk->file);
+            }
+            $ubah['pdf'] = $name;
+        }
+        // dd($ubah);
+        Mk::where('id', $mk->id)->update($ubah);
+
+        return redirect('/mata_kuliah')->with('info', 'mk sudah di-update');
     }
 
     /**
