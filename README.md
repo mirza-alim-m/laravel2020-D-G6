@@ -69,38 +69,38 @@ gunakan token (Bearer) kemudian akses url berikut.
 
 Dosen
 [GET] http://{yourhostname}/api/dosen
-[GET] http://{yourhostname}/api/dosen/{dosens}
-[POST] http://{yourhostname}/api/dosen 
+[GET] http://{yourhostname}/api/dosen/siapa/{dosens}
+[POST] http://{yourhostname}/api/dosen/tambah 
         parameter: [dosen_nama, dosen_nip (numeric), mata_kuliah_id (numeric), dosen_no_telpon(numeric), dosen_alamat (numeric)] (all required)
-[POST] http://{yourhostname}/api/dosen/{dosens} (untuk edit data dosen)
+[POST] http://{yourhostname}/api/dosen/ubah/{dosens} (untuk edit data dosen)
         parameter: [dosen_nama, dosen_nip (numeric), mata_kuliah_id (numeric), dosen_no_telpon(numeric), dosen_alamat (numeric), _method=put]
-[DELETE] http://{yourhostname}/api/dosen/{dosens}
+[DELETE] http://{yourhostname}/api/dosen/hapus/{dosens}
 
 MK
 [GET] http://{yourhostname}/api/Mk
-[GET] http://{yourhostname}/api/Mk/{mk}
-[POST] http://{yourhostname}/api/Mk
+[GET] http://{yourhostname}/api/Mk/apa/{mk}
+[POST] http://{yourhostname}/api/Mk/tambah
         parameter: [id (numeric), mata_kuliah] (all required)
-[POST] http://{yourhostname}/api/Mk/{mk} (untuk edit data mk)
+[POST] http://{yourhostname}/api/Mk/ubah/{mk} (untuk edit data mk)
         parameter: [id (numeric), mata_kuliah, _method=put]
-[DELETE] http://{yourhostname}/api/Mk/{mk}
+[DELETE] http://{yourhostname}/api/Mk/hapus/{mk}
 
 Ruang
 [GET] http://{yourhostname}/api/Ruang
-[GET] http://{yourhostname}/api/Ruang/{ruang}
-[POST] http://{yourhostname}/api/Ruang
+[GET] http://{yourhostname}/api/Ruang/apa/{ruang}
+[POST] http://{yourhostname}/api/Ruang/tambah
         parameter: [kelas, gedung] (all required)
-[POST] http://{yourhostname}/api/Ruang/{ruang} (untuk edit data ruang)
+[POST] http://{yourhostname}/api/Ruang/ubah{ruang} (untuk edit data ruang)
         parameter: [kelas, gedung, _method=put]
-[DELETE] http://{yourhostname}/api/Ruang/{ruang}
+[DELETE] http://{yourhostname}/api/Ruang/hapus/{ruang}
 
 Jam Kuliah
 [GET] http://{yourhostname}/api/Jam_Kuliah
-[GET] http://{yourhostname}/api/Jam_Kuliah/{jam_kuliah}
-[POST] http://{yourhostname}/api/Jam_Kuliah
+[GET] http://{yourhostname}/api/Jam_Kuliah/kapan{jam_kuliah}
+[POST] http://{yourhostname}/api/Jam_Kuliah/tambah
         parameter: [dosen_id (numeric), ruang_id (numeric), hari, jam] (all required)
-[POST] http://{yourhostname}/api/Jam_Kuliah/{jam_kuliah} (untuk edit data jam kuliah)
+[POST] http://{yourhostname}/api/Jam_Kuliah/ubah{jam_kuliah} (untuk edit data jam kuliah)
         parameter: [dosen_id (numeric), ruang_id (numeric), hari, jam, _method=put]
-[DELETE] http://{yourhostname}/api/Jam_Kuliah/{jam_kuliah}
+[DELETE] http://{yourhostname}/api/Jam_Kuliah/hapus{jam_kuliah}
 # DEMO
 http://laravel-d6.tegalian.com/
