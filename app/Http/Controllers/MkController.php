@@ -61,7 +61,7 @@ class MkController extends Controller
     {
        // memanggil view tambah
         $Mk = Mk::all();
-        return View('Mk.create', compact('Mk'));
+        return View('mk.create', compact('Mk'));
     }
 
     /**
