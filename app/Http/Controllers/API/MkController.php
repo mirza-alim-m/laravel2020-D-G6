@@ -86,13 +86,10 @@ class MkController extends Controller
      */
     public function update(Request $request, Mk $mk)
     {
-        $request->validate([
-            'id' => 'required', 
-            'mata_kuliah' => 'numeric'
-          ]);
+        // $request->validate([]);
           $change = [];
-          if (null !== $request->id) {
-              $change['id'] = $request->id;
+          if (null !== $mk->id) {
+              $change['id'] = $mk->id;
           }
           if (null !== $request->mata_kuliah) {
             $change['mata_kuliah'] = $request->mata_kuliah;
