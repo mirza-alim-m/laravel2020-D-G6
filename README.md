@@ -79,7 +79,7 @@ Dosen
 MK
 [GET] http://{yourhostname}/api/Mk
 [GET] http://{yourhostname}/api/Mk/apa/{mk}
-[POST] http://{yourhostname}/api/Mk/tambah/{mk}
+[POST] http://{yourhostname}/api/Mk/tambah
         parameter: [id (numeric), mata_kuliah] (all required)
 [POST] http://{yourhostname}/api/Mk/ubah/{mk} (untuk edit data mk)
         parameter: [id (numeric), mata_kuliah, _method=put]
@@ -88,7 +88,7 @@ MK
 Ruang
 [GET] http://{yourhostname}/api/Ruang
 [GET] http://{yourhostname}/api/Ruang/apa/{ruang}
-[POST] http://{yourhostname}/api/Ruang/tambah/{ruang}
+[POST] http://{yourhostname}/api/Ruang/tambah
         parameter: [kelas, gedung] (all required)
 [POST] http://{yourhostname}/api/Ruang/ubah/{ruang} (untuk edit data ruang)
         parameter: [kelas, gedung, _method=put]
@@ -97,7 +97,7 @@ Ruang
 Jam Kuliah
 [GET] http://{yourhostname}/api/Jam_Kuliah
 [GET] http://{yourhostname}/api/Jam_Kuliah/kapan/{jam_kuliah}
-[POST] http://{yourhostname}/api/Jam_Kuliah/tambah/{jam_kuliah}
+[POST] http://{yourhostname}/api/Jam_Kuliah/tambah
         parameter: [dosen_id (numeric), ruang_id (numeric), hari, jam] (all required)
 [POST] http://{yourhostname}/api/Jam_Kuliah/ubah/{jam_kuliah} (untuk edit data jam kuliah)
         parameter: [dosen_id (numeric), ruang_id (numeric), hari, jam, _method=put]
