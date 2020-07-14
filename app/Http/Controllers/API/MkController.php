@@ -97,7 +97,7 @@ class MkController extends Controller
 
           Mk::where('id', $request->id)
                       ->update($change);
-          $mk = Mk::find($request->id);
+          $mk = Mk::find($mk->id);
           $response = ['Pesan' => 'Mk berhasil diupdate.',
           'Mk' => $mk];
           return response()->json($response);
