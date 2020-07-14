@@ -19,7 +19,7 @@
         <div class="row mt-2">
         <input type="hidden" value="PUT" name="_method">
         <div class="col-8">Mata Kuliah</div>
-        <input class="form-control" placeholder="Mata Kuliah" type="text" name="mata_kuliah"
+        <input class="form-control col-6" placeholder="Mata Kuliah" type="text" name="mata_kuliah"
         value="{{$mk->mata_kuliah}}" />
         <br>
         </div>
