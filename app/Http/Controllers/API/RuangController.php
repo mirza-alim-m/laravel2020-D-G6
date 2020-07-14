@@ -43,7 +43,6 @@ class RuangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required|numeric',
             'kelas' => 'required'
             ,'gedung' => 'required'
             ]);
