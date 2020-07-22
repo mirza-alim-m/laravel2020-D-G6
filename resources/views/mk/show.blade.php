@@ -7,7 +7,7 @@
     <div class="card-body">
       <div class="col-2">Pdf</div>
       <div class="col-1">:</div>
-      <div class="col-7"><a href="{{asset('storage/'. $mk->pdf) }}">dokumen.pdf{</a></div> </div> 
+      <div class="col-7"><a href="{{asset('storage/'. $mk->pdf) }}">dokumen.pdf</a></div> </div> 
 
       <div class="col-2">Image</div>
       <div class="col-1">:</div>
